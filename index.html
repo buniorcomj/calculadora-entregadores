@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Calcule o lucro real das suas entregas: combustível, manutenção e resultado por quilômetro.">
+<title>Lucro na Rota | Calculadora para entregadores</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#eaf2f7;background:#0c1420}*{box-sizing:border-box}
+body{margin:0}main{max-width:900px;margin:auto;padding:24px 16px 60px}header{padding:24px 0}h1{font-size:clamp(30px,6vw,46px);margin:8px 0}p{color:#aebdcd;line-height:1.5}
+.card{background:#172334;border:1px solid #304052;border-radius:18px;padding:22px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+label{display:block;font-weight:600;font-size:14px;margin-bottom:7px}
+input,select{width:100%;background:#0c1420;border:1px solid #516176;color:white;border-radius:9px;padding:13px;font-size:17px}
+input:focus{outline:2px solid #44d9a1}h2{font-size:21px}small{color:#b6c3d0}
+.result{font-size:clamp(30px,7vw,46px);font-weight:800;color:#44d9a1;margin:10px 0}
+.row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #304052;padding:11px 0}
+.row span:last-child{text-align:right;font-weight:700}.tag{color:#44d9a1;font-weight:700}
+button{border:0;background:#44d9a1;color:#08251d;padding:14px 18px;border-radius:10px;font-weight:750;cursor:pointer}
+footer{color:#9cacbd;font-size:13px;margin-top:32px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.card{padding:17px}}
+</style></head><body><main>
+<header><div class="tag">🏍️ LUCRO NA ROTA • GRATUITO</div><h1>Quanto sobra no seu bolso?</h1><p>Descubra quanto você realmente ganha nas entregas, descontando energia e desgaste do veículo. Sem cadastro.</p></header>
+<section class="card"><h2>Seus números do dia</h2><div><label for="veiculo">Tipo de veículo</label><select id="veiculo"><option value="combustao">Moto a combustão</option><option value="eletrico">Moto elétrica</option><option value="ebike">Bicicleta elétrica</option><option value="bike">Bicicleta comum</option></select></div><div class="grid">
+<div><label for="receita">Faturamento do dia (R$)</label><input id="receita" type="number" min="0" step=".01" value="200"></div>
+<div><label for="km">Quilômetros rodados</label><input id="km" type="number" min="0" step=".1" value="100"></div>
+<div class="energia"><label for="preco">Preço do combustível (R$/litro)</label><input id="preco" type="number" min="0" step=".01" value="6"></div>
+<div class="energia"><label for="consumo">Consumo da moto (km/litro)</label><input id="consumo" type="number" min=".1" step=".1" value="40"></div>
+<div><label for="desgaste">Manutenção e desgaste (R$/km)</label><input id="desgaste" type="number" min="0" step=".01" value=".15"></div>
+<div><label for="horas">Horas trabalhadas</label><input id="horas" type="number" min="0" step=".5" value="8"></div>
+</div><p id="erro" role="alert" style="color:#ff8989" hidden></p><p><small>Manutenção e desgaste incluem uma reserva estimada para pneus, revisões e reparos (e óleo/relação quando aplicável). Ajuste conforme sua moto.</small></p></section>
+<section class="card" aria-live="polite"><div class="tag">RESULTADO ESTIMADO DO DIA</div><div class="result" id="lucro">R$ 170,00</div>
+<div class="row"><span id="nomeEnergia">Combustível</span><span id="custoComb"></span></div>
+<div class="row"><span>Manutenção e desgaste</span><span id="custoManut"></span></div>
+<div class="row"><span>Total de custos variáveis</span><span id="custos"></span></div>
+<div class="row"><span>Lucro estimado por km</span><span id="porKm"></span></div>
+<div class="row"><span>Lucro estimado por hora</span><span id="porHora"></span></div>
+<p><small>Estimativa operacional: não inclui custos fixos, impostos ou depreciação adicional. Não é lucro contábil definitivo.</small></p>
+<button id="copiar">Copiar resumo</button></section>
+<footer>Lucro na Rota • Versão inicial. Seus dados são calculados neste navegador e não são enviados a um servidor. Acompanhamento mensal será uma função futura.</footer>
+</main><script>
+const ids=['receita','km','preco','consumo','desgaste','horas'];
+const veiculo=document.getElementById('veiculo');
+function ajustar(){const tipo=veiculo.value;document.querySelectorAll('.energia').forEach(el=>el.hidden=tipo==='bike');document.querySelector('label[for=preco]').textContent=tipo==='combustao'?'Preço do combustível (R$/litro)':'Preço da energia (R$/kWh)';document.querySelector('label[for=consumo]').textContent=tipo==='combustao'?'Consumo (km/litro)':'Eficiência elétrica (km/kWh)';const p=document.getElementById('preco'),c=document.getElementById('consumo');if(tipo==='combustao'){p.value='6';c.value='40'}else if(tipo==='eletrico'||tipo==='ebike'){p.value='1';c.value=tipo==='eletrico'?'30':'70'}calcular();}
+const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+let resumo='';
+function calcular(){
+const [receita,km,preco,consumo,desgaste,horas]=ids.map(id=>Math.max(0,Number(document.getElementById(id).value)||0));
+const tipo=veiculo.value,eletrico=tipo==='eletrico'||tipo==='ebike',bike=tipo==='bike';const invalido=ids.some(id=>{const el=document.getElementById(id);return el.value.trim()===''||!Number.isFinite(Number(el.value))||Number(el.value)<0})||(!bike&&km>0&&consumo<=0);const erro=document.getElementById('erro');erro.hidden=!invalido;erro.textContent='Confira os campos: use valores não negativos e consumo maior que zero quando houver distância rodada.';if(invalido){document.getElementById('lucro').textContent='—';for(const id of ['custoComb','custoManut','custos','porKm','porHora'])document.getElementById(id).textContent='—';resumo='';document.getElementById('copiar').disabled=true;return;}document.getElementById('copiar').disabled=false;const combustivel=bike?0:(km/consumo*preco),manut=km*desgaste,custos=combustivel+manut,lucro=receita-custos;
+document.getElementById('nomeEnergia').textContent=bike?'Energia / combustível':eletrico?'Energia elétrica':'Combustível';document.getElementById('lucro').textContent=brl(lucro);
+document.getElementById('lucro').style.color=lucro>=0?'#44d9a1':'#ff8989';
+for(const [id,val] of Object.entries({custoComb:combustivel,custoManut:manut,custos,porKm:km?lucro/km:0,porHora:horas?lucro/horas:0}))document.getElementById(id).textContent=brl(val);
+resumo=`Lucro na Rota (${veiculo.options[veiculo.selectedIndex].text})\nFaturamento: ${brl(receita)}\nKm: ${km}\nCombustível: ${brl(combustivel)}\nManutenção: ${brl(manut)}\nResultado estimado: ${brl(lucro)}\nPor km: ${brl(km?lucro/km:0)}\nPor hora: ${brl(horas?lucro/horas:0)}`;
+}
+ids.forEach(id=>document.getElementById(id).addEventListener('input',calcular));veiculo.addEventListener('change',ajustar);
+document.getElementById('copiar').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(resumo);document.getElementById('copiar').textContent='Copiado!';setTimeout(()=>document.getElementById('copiar').textContent='Copiar resumo',1800)}catch(e){alert('Não foi possível copiar automaticamente.')}});
+ajustar();
+</script></body></html>
