@@ -236,3 +236,13 @@ Aguarde aprovação antes de escrever o primeiro módulo.
 
 - Como obter feedback de usuários sem coletar dados pessoais
   desnecessários.
+
+## Complemento aprovado em 30/10/2026 — troca de veículo e preços de energia
+
+- Na mesma simulação, trocar o tipo de veículo **não zera** faturamento, distância, horas, quantidade de serviços ou outros dados de trabalho; isso permite comparar veículos usando o mesmo cenário.
+- O preço por litro de um mesmo combustível é independente do tipo de veículo: ao alternar moto e carro a combustão, manter o valor informado, sem sobrescrever automaticamente por valor genérico. Se houver opção gasolina e etanol, conservar cada preço de combustível separadamente.
+- A tarifa de eletricidade em R$/kWh é independente do tipo de veículo elétrico: ao alternar moto, carro e bicicleta elétrica, preservar a tarifa informada. Preço de combustível e tarifa elétrica são parâmetros distintos, não convertidos entre si.
+- O **consumo/eficiência** é específico de cada veículo ou categoria selecionada e deve ser tratado separadamente do preço da energia; para elétricos, manter a unidade prevista neste documento (kWh/100 km).
+- Campos não aplicáveis podem ser ocultados sem perder valores relevantes já preenchidos na simulação; campos ocultos não podem impedir cálculo quando não se aplicam.
+- Incluir ação explícita **Novo cálculo** para iniciar outro cenário, com limpeza intencional e comportamento claro; não limpar os dados automaticamente ao trocar de veículo.
+- No MVP 1.0, manter valores durante a simulação atual. Persistência de preferências entre visitas/ao recarregar a página continua planejada para 1.1, sem criar banco de dados no MVP.
