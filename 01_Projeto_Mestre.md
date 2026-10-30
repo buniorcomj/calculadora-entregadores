@@ -246,3 +246,12 @@ Aguarde aprovação antes de escrever o primeiro módulo.
 - Campos não aplicáveis podem ser ocultados sem perder valores relevantes já preenchidos na simulação; campos ocultos não podem impedir cálculo quando não se aplicam.
 - Incluir ação explícita **Novo cálculo** para iniciar outro cenário, com limpeza intencional e comportamento claro; não limpar os dados automaticamente ao trocar de veículo.
 - No MVP 1.0, manter valores durante a simulação atual. Persistência de preferências entre visitas/ao recarregar a página continua planejada para 1.1, sem criar banco de dados no MVP.
+
+## Ponto de estudo levantado em 30/10/2026 — tarifas elétricas por horário (ainda sem prioridade aprovada)
+
+- O proprietário esclareceu que se refere à **variação do preço da energia durante o dia**, especialmente horários de ponta, intermediário e fora de ponta, e não apenas à preservação de um preço ao trocar de veículo.
+- A **tarifa convencional** não muda de preço em função da hora; a **Tarifa Branca** pode variar conforme faixas horárias e a distribuidora. Fins de semana e feriados nacionais usam a faixa fora de ponta conforme regras gerais da ANEEL. Há modalidades e ofertas específicas adicionais; não generalizar.
+- Para calcular o custo da recarga, é o **horário da recarga/consumo elétrico**, não o horário das entregas, que determina a faixa tarifária; uma recarga que passe por várias faixas requer repartir a energia consumida em cada uma, ou permitir lançamento manual dos kWh por faixa.
+- Possível solução para avaliar: escolher tarifa fixa (convencional) ou horária, permitindo tarifas/horários configuráveis e previsão do custo por faixa, sem presumir preços nacionais únicos. Se a recarga ocorrer em estação comercial, pode haver cobrança específica do operador, também configurável.
+- **Pendente de decisão:** incluir cálculo horário já no MVP 1.0 ou programá-lo para evolução futura. Não ampliar automaticamente escopo/complexidade do MVP sem aprovação. Até lá, o campo R$/kWh já planejado permite informar uma tarifa efetiva média como estimativa.
+- Referências oficiais: https://www.gov.br/aneel/pt-br/assuntos/tarifas/tarifa-branca e https://www.gov.br/aneel/pt-br/assuntos/tarifas/entenda-a-tarifa/postos-tarifarios .
