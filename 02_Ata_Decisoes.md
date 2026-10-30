@@ -27,3 +27,8 @@ Registrar novas decisões nesta ata, atualizar o Projeto Mestre quando mudarem r
 - A tarifa elétrica já constava do Projeto Mestre, mas seu comportamento na troca de veículo foi explicitado nesta decisão.
 - Prever botão "Novo cálculo" para limpeza intencional dos dados. Persistência entre visitas continua reservada ao roadmap 1.1.
 - Esta é uma especificação aprovada; ainda não representa implementação no protótipo `index.html`. Sem alteração no código nesta data.
+
+## Esclarecimento sobre energia elétrica — 30/10/2026
+- O proprietário levantou a **tarifação elétrica por horário do dia (ponta/intermediário/fora de ponta)** para veículos elétricos. Isso é diferente da decisão anterior de conservar o valor da tarifa R$/kWh ao trocar o tipo de veículo.
+- A forma de cálculo e a prioridade (MVP 1.0 ou atualização posterior) ainda **não foram aprovadas**. Manter como questão em aberto sem sobrepor a ordem de versões aprovada.
+- Referência: ANEEL Tarifa Branca e Postos Tarifários.
