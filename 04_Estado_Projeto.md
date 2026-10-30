@@ -41,3 +41,8 @@ Próximo passo único:
 - Vírgula decimal e comportamento em celulares/navegadores reais ainda precisam de validação.
 - Relatório detalhado e instruções para regressão: `05_Relatorio_Testes_2026-10-30.md`.
 - `index.html` não foi modificado nesta sessão.
+
+## Decisão de interface registrada — 30/10/2026
+- Troca de veículo mantém faturamento, km, horas e quantidade de serviços na simulação; preços de gasolina/etanol e tarifa elétrica R$/kWh permanecem associados à fonte de energia, não se apagam ao mudar veículo.
+- Consumo é específico do tipo de veículo; os campos de entrada se adaptam sem perder outros valores. Haverá botão explícito "Novo cálculo" para limpar dados.
+- Regras detalhadas no complemento de 30/10 do `01_Projeto_Mestre.md` e na ata. Pendentes de implementação e teste; `index.html` continua inalterado.
