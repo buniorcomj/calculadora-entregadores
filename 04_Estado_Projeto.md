@@ -46,3 +46,7 @@ Próximo passo único:
 - Troca de veículo mantém faturamento, km, horas e quantidade de serviços na simulação; preços de gasolina/etanol e tarifa elétrica R$/kWh permanecem associados à fonte de energia, não se apagam ao mudar veículo.
 - Consumo é específico do tipo de veículo; os campos de entrada se adaptam sem perder outros valores. Haverá botão explícito "Novo cálculo" para limpar dados.
 - Regras detalhadas no complemento de 30/10 do `01_Projeto_Mestre.md` e na ata. Pendentes de implementação e teste; `index.html` continua inalterado.
+
+## Pendência levantada em 30/10/2026 — tarifa elétrica horária
+- Confirmar futura especificação para tarifa convencional versus tarifa diferenciada por horário (ponta/intermediária/fora de ponta); período da **recarga** determina custo, não horário de trabalho.
+- Tarifas e horários variam conforme distribuidora/modalidade; não codificar tabelas nacionais fixas. Prioridade entre MVP 1.0 e versão futura **a decidir**, sem alterar a especificação do MVP por suposição.
