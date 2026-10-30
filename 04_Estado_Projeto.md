@@ -33,3 +33,11 @@ Testes executados e resultado:
 Decisões novas (registrar também na ata):
 Problemas/risco:
 Próximo passo único:
+
+## Testes executados em 30/10/2026
+- 20 verificações funcionais em navegador (Chromium), 18 aprovadas e 2 falhas ligadas a um mesmo defeito: bicicleta comum bloqueada por validação de campo de consumo oculto/vazio.
+- Sem estouro horizontal detectado nas larguras 320 e 360 px; negativas bloqueadas; cenários básicos de cálculo aprovados.
+- Divergência entre unidade elétrica do protótipo (km/kWh) e Projeto Mestre (kWh/100 km) confirmada.
+- Vírgula decimal e comportamento em celulares/navegadores reais ainda precisam de validação.
+- Relatório detalhado e instruções para regressão: `05_Relatorio_Testes_2026-10-30.md`.
+- `index.html` não foi modificado nesta sessão.
