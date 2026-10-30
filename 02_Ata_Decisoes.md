@@ -20,3 +20,10 @@ Criar calculadora web gratuita de rentabilidade para entregadores, motoristas de
 
 ## Regra de documentação
 Registrar novas decisões nesta ata, atualizar o Projeto Mestre quando mudarem requisitos e atualizar o Estado do Projeto após cada sessão de implementação. Não apagar decisões antigas; marcar como substituídas, com data e motivo.
+
+## Decisões de funcionamento — 30/10/2026
+- Aprovado manter os dados de trabalho (receita, km, horas e quantidade) ao trocar de veículo; a troca serve também para comparação, sem reinicialização automática.
+- Aprovado manter os preços informados independentemente do veículo que usa a mesma fonte de energia: valor do litro por combustível (gasolina/etanol) para moto/carro e tarifa R$/kWh para veículos elétricos, inclusive bicicletas elétricas. Consumo continua específico do veículo.
+- A tarifa elétrica já constava do Projeto Mestre, mas seu comportamento na troca de veículo foi explicitado nesta decisão.
+- Prever botão "Novo cálculo" para limpeza intencional dos dados. Persistência entre visitas continua reservada ao roadmap 1.1.
+- Esta é uma especificação aprovada; ainda não representa implementação no protótipo `index.html`. Sem alteração no código nesta data.
