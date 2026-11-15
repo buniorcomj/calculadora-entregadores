@@ -12,7 +12,13 @@ input,select{width:100%;background:#0c1420;border:1px solid #516176;color:white;
 input:focus{outline:2px solid #44d9a1}h2{font-size:21px}small{color:#b6c3d0}
 .result{font-size:clamp(30px,7vw,46px);font-weight:800;color:#44d9a1;margin:10px 0}
 .row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #304052;padding:11px 0}
-.row span:last-child{text-align:right;font-weight:700}.tag{color:#44d9a1;font-weight:700}
+.row > span:last-child{text-align:right;font-weight:700}.tag{color:#44d9a1;font-weight:700}
+.info{display:inline-block;vertical-align:middle;margin-left:6px;position:relative;font-weight:normal}
+.info summary{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #8297aa;border-radius:50%;color:#cde5f6;cursor:pointer;list-style:none;font-size:14px}
+.info summary::-webkit-details-marker{display:none}
+.info summary:focus-visible{outline:2px solid #44d9a1;outline-offset:2px}
+.info .explicacao{position:absolute;left:0;top:28px;z-index:10;width:260px;max-width:75vw;padding:11px;border:1px solid #667e94;border-radius:9px;background:#24364b;color:#f1f6f9;box-shadow:0 6px 18px #0006;font-size:13px;line-height:1.45;text-align:left;white-space:normal}
+.row .info .explicacao{left:auto;right:0}
 button{border:0;background:#44d9a1;color:#08251d;padding:14px 18px;border-radius:10px;font-weight:750;cursor:pointer}
 footer{color:#9cacbd;font-size:13px;margin-top:32px}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.card{padding:17px}}
@@ -26,12 +32,12 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 <div><label for="desgaste">Manutenção e desgaste (R$/km)</label><input id="desgaste" type="text" inputmode="decimal" placeholder="Ex.: 0,15"><small class="ajuda">Informe seu custo estimado por km, se souber. Não há um valor padrão: depende do veículo. Vamos melhorar esse cálculo futuramente.</small></div>
 <div><label for="horas">Horas trabalhadas</label><input id="horas" type="number" min="0" step=".5" placeholder="Ex.: 8"><small class="ajuda">Quantas horas você trabalhou no dia?</small></div>
 </div><p id="erro" role="alert" style="color:#ff8989" hidden></p><p><small>Preencha os campos com seus dados reais para calcular. A manutenção ainda é uma estimativa informada pelo usuário e não inclui automaticamente todas as despesas.</small></p></section>
-<section class="card" aria-live="polite"><div class="tag">RESULTADO ESTIMADO DO DIA</div><div class="result" id="lucro">—</div>
-<div class="row"><span id="nomeEnergia">Combustível</span><span id="custoComb"></span></div>
-<div class="row"><span>Manutenção e desgaste</span><span id="custoManut"></span></div>
-<div class="row"><span>Total de custos variáveis</span><span id="custos"></span></div>
-<div class="row"><span>Lucro estimado por km</span><span id="porKm"></span></div>
-<div class="row"><span>Lucro estimado por hora</span><span id="porHora"></span></div>
+<section class="card" aria-live="polite"><div class="tag">RESULTADO ESTIMADO DO DIA <details class="info"><summary aria-label="Explicação de resultado estimado" title="O que significa?">ⓘ</summary><span class="explicacao">Faturamento menos os custos estimados de combustível ou energia e manutenção informada. Não inclui automaticamente todos os custos fixos e impostos.</span></details></div><div class="result" id="lucro">—</div>
+<div class="row"><span><span id="nomeEnergia">Combustível</span> <details class="info"><summary aria-label="Explicação de combustível ou energia" title="O que significa?">ⓘ</summary><span class="explicacao">Custo estimado da distância rodada, calculado com o consumo e o preço informados. Para bicicleta comum é R$ 0,00.</span></details></span><span id="custoComb"></span></div>
+<div class="row"><span>Manutenção e desgaste <details class="info"><summary aria-label="Explicação de manutenção e desgaste" title="O que significa?">ⓘ</summary><span class="explicacao">É o valor por quilômetro informado por você, multiplicado pelos quilômetros rodados. Ainda não é calculado automaticamente pelo modelo do veículo.</span></details></span><span id="custoManut"></span></div>
+<div class="row"><span>Total de custos variáveis <details class="info"><summary aria-label="Explicação de total de custos variáveis" title="O que significa?">ⓘ</summary><span class="explicacao">Soma do gasto estimado com combustível ou energia e com manutenção e desgaste.</span></details></span><span id="custos"></span></div>
+<div class="row"><span>Lucro estimado por km <details class="info"><summary aria-label="Explicação de lucro estimado por km" title="O que significa?">ⓘ</summary><span class="explicacao">Resultado estimado do dia dividido pelos quilômetros rodados.</span></details></span><span id="porKm"></span></div>
+<div class="row"><span>Lucro estimado por hora <details class="info"><summary aria-label="Explicação de lucro estimado por hora" title="O que significa?">ⓘ</summary><span class="explicacao">Resultado estimado do dia dividido pelas horas trabalhadas.</span></details></span><span id="porHora"></span></div>
 <p><small>Estimativa operacional: não inclui custos fixos, impostos ou depreciação adicional. Não é lucro contábil definitivo.</small></p>
 <button id="copiar">Copiar resumo</button></section>
 <footer>Lucro na Rota • Versão inicial. Seus dados são calculados neste navegador e não são enviados a um servidor. Acompanhamento mensal será uma função futura.</footer>
