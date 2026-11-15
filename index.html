@@ -73,7 +73,7 @@ function calcular(){
  document.getElementById('nomeEnergia').textContent=bike?'Energia / combustível':eletrico?'Energia elétrica':'Combustível';document.getElementById('lucro').textContent=brl(lucro);
  document.getElementById('lucro').style.color=lucro>=0?'#44d9a1':'#ff8989';
  for(const [id,val] of Object.entries({custoComb:combustivel,custoManut:manut,custos,porKm:km?lucro/km:0,porHora:horas?lucro/horas:0}))document.getElementById(id).textContent=brl(val);
- resumo=\`Lucro na Rota (\${veiculo.options[veiculo.selectedIndex].text})\nFaturamento: \${brl(receita)}\nKm: \${km}\nCombustível: \${brl(combustivel)}\nManutenção: \${brl(manut)}\nResultado estimado: \${brl(lucro)}\nPor km: \${brl(km?lucro/km:0)}\nPor hora: \${brl(horas?lucro/horas:0)}\`;
+ resumo=`Lucro na Rota (${veiculo.options[veiculo.selectedIndex].text})\nFaturamento: ${brl(receita)}\nKm: ${km}\nCombustível: ${brl(combustivel)}\nManutenção: ${brl(manut)}\nResultado estimado: ${brl(lucro)}\nPor km: ${brl(km?lucro/km:0)}\nPor hora: ${brl(horas?lucro/horas:0)}`;
 }
 ids.forEach(id=>document.getElementById(id).addEventListener('input',calcular));veiculo.addEventListener('change',ajustar);
 document.getElementById('copiar').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(resumo);document.getElementById('copiar').textContent='Copiado!';setTimeout(()=>document.getElementById('copiar').textContent='Copiar resumo',1800)}catch(e){alert('Não foi possível copiar automaticamente.')}});
