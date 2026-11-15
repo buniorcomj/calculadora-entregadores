@@ -18,7 +18,7 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.card{padding:17px}}
 </style></head><body><main>
 <header><div class="tag">🏍️ LUCRO NA ROTA • GRATUITO</div><h1>Quanto sobra no seu bolso?</h1><p>Descubra quanto você realmente ganha nas entregas, descontando energia e desgaste do veículo. Sem cadastro.</p></header>
-<section class="card"><h2>Seus números do dia</h2><div><label for="veiculo">Tipo de veículo</label><select id="veiculo"><option value="combustao">Moto a combustão</option><option value="eletrico">Moto elétrica</option><option value="ebike">Bicicleta elétrica</option><option value="bike">Bicicleta comum</option></select><small class="ajuda">Selecione o veículo que você usa para trabalhar.</small></div><div class="grid">
+<section class="card"><h2>Seus números do dia</h2><div><label for="veiculo">Tipo de veículo</label><select id="veiculo"><option value="combustao">Moto a combustão</option><option value="eletrico">Moto elétrica</option><option value="carro_combustao">Carro a combustão</option><option value="carro_eletrico">Carro elétrico</option><option value="ebike">Bicicleta elétrica</option><option value="bike">Bicicleta comum</option></select><small class="ajuda">Selecione o veículo que você usa para trabalhar.</small></div><div class="grid">
 <div><label for="receita">Faturamento do dia (R$)</label><input id="receita" type="number" min="0" step=".01" placeholder="Ex.: 200"><small class="ajuda">Quanto você recebeu pelo trabalho no dia?</small></div>
 <div><label for="km">Quilômetros rodados</label><input id="km" type="number" min="0" step=".1" placeholder="Ex.: 100"><small class="ajuda">Quantos quilômetros você rodou trabalhando?</small></div>
 <div class="energia"><label for="preco">Preço do combustível (R$/litro)</label><input id="preco" type="number" min="0" step=".01" placeholder="Informe o valor real"><small class="ajuda" id="ajudaPreco">Quanto você pagou por litro de combustível?</small></div>
@@ -38,8 +38,10 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 </main><script>
 const ids=['receita','km','preco','consumo','desgaste','horas'];
 const veiculo=document.getElementById('veiculo');
-const parametros={combustao:{preco:'',consumo:''},eletrico:{preco:'',consumo:''},ebike:{preco:'',consumo:''},bike:{}};
+const parametros={combustao:{preco:'',consumo:''},eletrico:{preco:'',consumo:''},ebike:{preco:'',consumo:''},carro_combustao:{preco:'',consumo:''},carro_eletrico:{preco:'',consumo:''},bike:{}};
 let tipoAnterior=veiculo.value;
+const ehCombustao=tipo=>tipo==='combustao'||tipo==='carro_combustao';
+const ehEletrico=tipo=>tipo==='eletrico'||tipo==='ebike'||tipo==='carro_eletrico';
 function ajustar(){
  const tipo=veiculo.value;
  const preco=document.getElementById('preco'),consumo=document.getElementById('consumo');
@@ -53,16 +55,16 @@ function ajustar(){
  }
  tipoAnterior=tipo;
  document.querySelectorAll('.energia').forEach(el=>el.hidden=tipo==='bike');
- document.querySelector('label[for=preco]').textContent=tipo==='combustao'?'Preço do combustível (R$/litro)':'Preço da energia (R$/kWh)';
- document.querySelector('label[for=consumo]').textContent=tipo==='combustao'?'Consumo (km/litro)':'Eficiência elétrica (km/kWh)';
- document.getElementById('ajudaPreco').textContent=tipo==='combustao'?'Quanto você pagou por litro de gasolina ou etanol?':'Informe o preço de 1 kWh na sua conta de luz, não o valor total da fatura.';
- document.getElementById('ajudaConsumo').textContent=tipo==='combustao'?'Quantos quilômetros seu veículo faz com 1 litro? Use sua média real.':'Quantos quilômetros percorre com 1 kWh? Consulte o manual. Se ele mostrar autonomia e bateria em kWh, divida a autonomia pela capacidade da bateria.';
+ document.querySelector('label[for=preco]').textContent=ehCombustao(tipo)?'Preço do combustível (R$/litro)':'Preço da energia (R$/kWh)';
+ document.querySelector('label[for=consumo]').textContent=ehCombustao(tipo)?'Consumo (km/litro)':'Eficiência elétrica (km/kWh)';
+ document.getElementById('ajudaPreco').textContent=ehCombustao(tipo)?'Quanto você pagou por litro de gasolina ou etanol?':'Informe o preço de 1 kWh na sua conta de luz, não o valor total da fatura.';
+ document.getElementById('ajudaConsumo').textContent=ehCombustao(tipo)?'Quantos quilômetros seu veículo faz com 1 litro? Use sua média real.':'Quantos quilômetros percorre com 1 kWh? Consulte o manual. Se ele mostrar autonomia e bateria em kWh, divida a autonomia pela capacidade da bateria.';
  calcular();
 }
 const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 let resumo='';
 function calcular(){
- const tipo=veiculo.value,eletrico=tipo==='eletrico'||tipo==='ebike',bike=tipo==='bike';
+ const tipo=veiculo.value,eletrico=ehEletrico(tipo),bike=tipo==='bike';
  const ativos=ids.filter(id=>!bike||(id!=='preco'&&id!=='consumo'));
  const invalido=ativos.some(id=>{const el=document.getElementById(id);return el.value.trim()===''||!Number.isFinite(Number(el.value.replace(',','.')))||Number(el.value.replace(',','.'))<0})||(!bike&&Number(document.getElementById('km').value)>0&&Number(document.getElementById('consumo').value)<=0);
  const erro=document.getElementById('erro');erro.hidden=!invalido;erro.textContent='Preencha os campos com seus próprios valores. Use números não negativos e consumo maior que zero se tiver rodado.';
