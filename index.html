@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Calcule o lucro real das suas entregas: combustível, manutenção e resultado por quilômetro.">
+<meta name="description" content="Calcule o lucro das entregas com combustível, manutenção, depreciação e despesas do veículo.">
 <title>Lucro na Rota | Calculadora para entregadores</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#eaf2f7;background:#0c1420}*{box-sizing:border-box}
@@ -29,7 +29,7 @@ button{border:0;background:#44d9a1;color:#08251d;padding:14px 18px;border-radius
 footer{color:#9cacbd;font-size:13px;margin-top:32px}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.card{padding:17px}}
 </style></head><body><main>
-<header><div class="tag">🏍️ LUCRO NA ROTA • GRATUITO</div><h1>Quanto sobra no seu bolso?</h1><p>Descubra quanto você realmente ganha nas entregas, descontando energia e desgaste do veículo. Sem cadastro.</p></header>
+<header><div class="tag">🏍️ LUCRO NA ROTA • GRATUITO</div><h1>Quanto sobra no seu bolso?</h1><p>Descubra quanto você realmente ganha nas entregas, descontando energia, manutenção e depreciação do veículo. Sem cadastro.</p></header>
 <section class="card"><h2>Seus números do dia</h2><div><span id="tituloPropriedade">Situação do veículo</span><div class="abas" role="group" aria-labelledby="tituloPropriedade"><button type="button" class="aba" id="abaProprio" aria-pressed="true">Veículo próprio</button><button type="button" class="aba" id="abaAlugado" aria-pressed="false">Veículo alugado</button></div><small class="ajuda">Troque de aba para comparar. Cada modalidade guarda seus custos e parâmetros de energia separadamente.</small></div><div><label for="veiculo">Tipo de veículo</label><select id="veiculo"><option value="combustao">Moto a combustão</option><option value="eletrico">Moto elétrica</option><option value="carro_combustao">Carro a combustão</option><option value="carro_eletrico">Carro elétrico</option><option value="ebike">Bicicleta elétrica</option><option value="bike">Bicicleta comum</option></select><small class="ajuda">Selecione o veículo que você usa para trabalhar.</small></div><div class="grid">
 <div><label for="receita">Faturamento do dia (R$)</label><input id="receita" type="number" min="0" step=".01" placeholder="Ex.: 200"><small class="ajuda">Quanto você recebeu pelo trabalho no dia?</small></div>
 <div><label for="km">Quilômetros rodados</label><input id="km" type="number" min="0" step=".1" placeholder="Ex.: 100"><small class="ajuda">Quantos quilômetros você rodou trabalhando?</small></div>
@@ -40,12 +40,12 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 <div><label for="diasMes">Dias trabalhados por mês</label><input id="diasMes" type="number" min="1" max="31" step="1" placeholder="Ex.: 24"><small class="ajuda">Necessário para dividir aluguel e despesas mensais.</small></div>
 </div>
 <div id="painelProprio" class="painelCustos"><h3>Custos do veículo próprio</h3><div class="grid">
-<div><label for="desgaste">Manutenção e desgaste (R$/km)</label><input id="desgaste" type="text" inputmode="decimal" placeholder="Ex.: 0,15"><small class="ajuda">Reserva estimada por km. Informe 0 se não quiser considerá-la.</small></div>
+<div><label for="depreciacao">Depreciação do veículo (R$/km)</label><input id="depreciacao" type="text" inputmode="decimal" placeholder="Ex.: 0,10"><small class="ajuda">Perda estimada de valor do veículo por quilômetro rodado. Não é uma despesa paga no dia. Deixe em branco para considerar zero.</small></div>
 <div><label for="financiamento">Prestação / financiamento mensal (R$)</label><input id="financiamento" type="text" inputmode="decimal" placeholder="Ex.: 400"><small class="ajuda">Pagamento mensal do veículo, se houver.</small></div>
-<div><label for="seguro">Seguro mensal (R$)</label><input id="seguro" type="text" inputmode="decimal" placeholder="Ex.: 250"></div>
-<div><label for="ipva">IPVA mensal (R$)</label><input id="ipva" type="text" inputmode="decimal" placeholder="Ex.: 150"><small class="ajuda">Informe a parcela mensal equivalente (IPVA anual dividido por 12).</small></div>
-<div><label for="manutMensal">Manutenção mensal (R$)</label><input id="manutMensal" type="text" inputmode="decimal" placeholder="Ex.: 200"><small class="ajuda">Use só para custos que não estejam na reserva por km, evitando contar duas vezes.</small></div>
-</div><small class="ajuda">Campos mensais em branco são considerados zero. Eles são distribuídos pelos dias trabalhados no mês.</small></div>
+<div><label for="seguro">Valor do seguro (R$)</label><input id="seguro" type="text" inputmode="decimal" placeholder="Ex.: 250"><label for="periodoSeguro" style="margin-top:9px">Período do seguro</label><select id="periodoSeguro"><option value="mensal">Mensal</option><option value="anual">Anual</option></select><small class="ajuda">Informe o valor total do período escolhido, não o valor de cada parcela se for anual.</small></div>
+<div><label for="ipva">Valor do IPVA (R$)</label><input id="ipva" type="text" inputmode="decimal" placeholder="Ex.: 1200"><label for="periodoIpva" style="margin-top:9px">Período do IPVA</label><select id="periodoIpva"><option value="anual">Anual</option><option value="mensal">Mensal</option></select><small class="ajuda">Informe o valor total do ano ou o equivalente mensal. Não informe apenas a parcela de um parcelamento curto.</small></div>
+<div><label for="manutMensal">Manutenção mensal (R$)</label><input id="manutMensal" type="text" inputmode="decimal" placeholder="Ex.: 200"><small class="ajuda">Troca de óleo, pneus, revisões e consertos: informe a média mensal. Não inclua aqui a perda de valor do veículo.</small></div>
+</div><small class="ajuda">Custos em branco valem zero. Seguro e IPVA anuais são divididos por 12; depois, os custos mensais são rateados pelos dias trabalhados.</small></div>
 <div id="painelAlugado" class="painelCustos" hidden><h3>Custos do veículo alugado</h3><div class="grid">
 <div><label for="aluguel">Valor do aluguel do veículo (R$)</label><input id="aluguel" type="text" inputmode="decimal" placeholder="Informe o valor, mesmo que seja 0"></div>
 <div><label for="periodoAluguel">Período cobrado pelo aluguel</label><select id="periodoAluguel"><option value="semana">Por semana</option><option value="dia">Por dia</option><option value="mes">Por mês</option></select><small class="ajuda">O aluguel será distribuído pelos dias trabalhados desse período.</small></div>
@@ -54,14 +54,14 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 <p id="erro" role="alert" style="color:#ff8989" hidden></p><p><small>Preencha com seus dados reais. Os custos mensais ou semanais são rateados para estimar o resultado de um dia de trabalho.</small></p></section>
 <section class="card" aria-live="polite"><div class="tag">RESULTADO ESTIMADO DO DIA <details class="info"><summary aria-label="Explicação de resultado estimado" title="O que significa?">ⓘ</summary><span class="explicacao">Faturamento menos combustível ou energia e os custos informados da modalidade escolhida: aluguel ou despesas do próprio. Valores semanais e mensais são distribuídos pelos dias trabalhados.</span></details></div><div class="result" id="lucro">—</div>
 <div class="row"><span><span id="nomeEnergia">Combustível</span> <details class="info"><summary aria-label="Explicação de combustível ou energia" title="O que significa?">ⓘ</summary><span class="explicacao">Custo estimado da distância rodada, calculado com o consumo e o preço informados. Para bicicleta comum é R$ 0,00.</span></details></span><span id="custoComb"></span></div>
-<div class="row" id="linhaManut"><span>Manutenção e desgaste <details class="info"><summary aria-label="Explicação de manutenção e desgaste" title="O que significa?">ⓘ</summary><span class="explicacao">Custo por km informado por você, multiplicado pelos quilômetros rodados. Só é considerado no veículo próprio.</span></details></span><span id="custoManut"></span></div>
-<div class="row"><span id="nomeModalidade">Despesas mensais do próprio (rateadas)</span><span id="custoModalidade"></span></div>
+<div class="row" id="linhaManut"><span>Depreciação do veículo <details class="info"><summary aria-label="Explicação da depreciação" title="O que significa?">ⓘ</summary><span class="explicacao">Perda estimada de valor do veículo: depreciação por km multiplicada pelos quilômetros rodados. Não é pagamento imediato; é um custo econômico considerado na estimativa.</span></details></span><span id="custoManut"></span></div>
+<div class="row"><span id="nomeModalidade">Manutenção e despesas mensais (rateadas)</span><span id="custoModalidade"></span></div>
 <div class="row" id="linhaExtras" hidden><span>Outras despesas do motorista</span><span id="custoExtras"></span></div>
 <div class="row"><span>Total de custos considerados <details class="info"><summary aria-label="Explicação de total de custos considerados" title="O que significa?">ⓘ</summary><span class="explicacao">Soma do combustível ou energia e das despesas correspondentes à aba selecionada, incluindo o rateio do aluguel ou das despesas mensais quando informados.</span></details></span><span id="custos"></span></div>
 <div class="row"><span>Lucro estimado por km <details class="info"><summary aria-label="Explicação de lucro estimado por km" title="O que significa?">ⓘ</summary><span class="explicacao">Resultado estimado do dia dividido pelos quilômetros rodados.</span></details></span><span id="porKm"></span></div>
 <div class="row"><span>Lucro estimado por hora <details class="info"><summary aria-label="Explicação de lucro estimado por hora" title="O que significa?">ⓘ</summary><span class="explicacao">Resultado estimado do dia dividido pelas horas trabalhadas.</span></details></span><span id="porHora"></span></div>
 <p id="notaRateio"><small>Estimativa do dia. Despesas mensais são divididas pelos dias trabalhados informados.</small></p>
-<p><small>Estimativa de dinheiro disponível após os custos informados: não é lucro contábil definitivo. Outros impostos e despesas não informados podem existir.</small></p>
+<p><small>Estimativa de resultado após os custos informados. A depreciação representa perda de valor, não saída de dinheiro no dia; o resultado não é saldo de caixa nem lucro contábil definitivo.</small></p>
 <button id="copiar">Copiar resumo</button></section>
 <footer>Lucro na Rota • Versão inicial. Seus dados são calculados neste navegador e não são enviados a um servidor. Acompanhamento mensal será uma função futura.</footer>
 </main><script>
@@ -126,7 +126,7 @@ function calcular(){
  const d={
   receita:numero('receita'),km:numero('km'),horas:numero('horas'),
   preco:bike?0:numero('preco'),consumo:bike?0:numero('consumo'),
-  desgaste:proprio?numero('desgaste'):0,
+  depreciacao:proprio?numero('depreciacao',true):0,
   financiamento:proprio?numero('financiamento',true):0,
   seguro:proprio?numero('seguro',true):0,
   ipva:proprio?numero('ipva',true):0,
@@ -148,7 +148,9 @@ function calcular(){
   invalidar('O consumo deve ser maior que zero quando há quilômetros rodados.');
   return;
  }
- const fixosMes=d.financiamento+d.seguro+d.ipva+d.manutMensal;
+ const seguroMes=d.seguro/(el('periodoSeguro').value==='anual'?12:1);
+  const ipvaMes=d.ipva/(el('periodoIpva').value==='anual'?12:1);
+  const fixosMes=d.financiamento+seguroMes+ipvaMes+d.manutMensal;
  const periodo=el('periodoAluguel').value;
  if(proprio&&fixosMes>0&&d.diasMes===0){
   invalidar('Informe os dias trabalhados por mês para distribuir as despesas mensais do veículo próprio.');
@@ -163,27 +165,27 @@ function calcular(){
   return;
  }
  const energia=bike||d.km===0?0:d.km/d.consumo*d.preco;
- const manut=proprio?d.km*d.desgaste:0;
+ const depreciacao=proprio?d.km*d.depreciacao:0;
  const custoModalidade=proprio?(fixosMes?fixosMes/d.diasMes:0):
   (periodo==='dia'?d.aluguel:periodo==='semana'?(d.aluguel?d.aluguel/d.diasSemana:0):(d.aluguel?d.aluguel/d.diasMes:0));
- const custos=energia+manut+custoModalidade+d.extras;
+ const custos=energia+depreciacao+custoModalidade+d.extras;
  const lucro=d.receita-custos;
  el('erro').hidden=true;
  el('copiar').disabled=false;
  el('nomeEnergia').textContent=bike?'Energia / combustível':ehEletrico(tipo)?'Energia elétrica':'Combustível';
- el('nomeModalidade').textContent=proprio?'Despesas mensais do próprio (rateadas)':'Aluguel do veículo (rateado)';
+ el('nomeModalidade').textContent=proprio?'Manutenção e despesas mensais (rateadas)':'Aluguel do veículo (rateado)';
  el('notaRateio').textContent=proprio?
-  'Despesas mensais divididas pelos dias trabalhados no mês. Evite repetir custos já incluídos no desgaste por km.':
+  'Manutenção, financiamento, seguro e IPVA são convertidos em custos mensais e divididos pelos dias trabalhados. A depreciação por km é calculada separadamente.':
   'O aluguel é dividido pelos dias trabalhados conforme o período escolhido; as despesas extras são por dia.';
  el('lucro').textContent=brl(lucro);
  el('lucro').style.color=lucro>=0?'#44d9a1':'#ff8989';
- for(const [id,valor] of Object.entries({custoComb:energia,custoManut:manut,custoModalidade,custoExtras:d.extras,custos,porKm:d.km?lucro/d.km:0,porHora:d.horas?lucro/d.horas:0}))el(id).textContent=brl(valor);
+ for(const [id,valor] of Object.entries({custoComb:energia,custoManut:depreciacao,custoModalidade,custoExtras:d.extras,custos,porKm:d.km?lucro/d.km:0,porHora:d.horas?lucro/d.horas:0}))el(id).textContent=brl(valor);
  resumo=[
   'Lucro na Rota ('+veiculo.options[veiculo.selectedIndex].text+' — '+(proprio?'próprio':'alugado')+')',
   'Faturamento: '+brl(d.receita),
   'Km: '+d.km,
   'Energia / combustível: '+brl(energia),
-  proprio?'Manutenção / desgaste por km: '+brl(manut):null,
+  proprio?'Depreciação por km: '+brl(depreciacao):null,
   (proprio?'Despesas mensais rateadas: ':'Aluguel rateado: ')+brl(custoModalidade),
   !proprio?'Despesas adicionais: '+brl(d.extras):null,
   'Total de custos: '+brl(custos),
@@ -192,11 +194,12 @@ function calcular(){
   'Por hora: '+brl(d.horas?lucro/d.horas:0)
  ].filter(Boolean).join('\n');
 }
-for(const id of ['receita','km','horas','desgaste','financiamento','seguro','ipva','manutMensal','aluguel','extrasAlugado','diasSemana','diasMes']){
+for(const id of ['receita','km','horas','depreciacao','financiamento','seguro','ipva','manutMensal','aluguel','extrasAlugado','diasSemana','diasMes']){
  el(id).addEventListener('input',calcular);
 }
 for(const id of ['preco','consumo'])el(id).addEventListener('input',()=>atualizarEnergia(id));
 el('periodoAluguel').addEventListener('change',calcular);
+for(const id of ['periodoSeguro','periodoIpva'])el(id).addEventListener('change',calcular);
 el('abaProprio').addEventListener('click',()=>selecionarModo('proprio'));
 el('abaAlugado').addEventListener('click',()=>selecionarModo('alugado'));
 veiculo.addEventListener('change',ajustar);
