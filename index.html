@@ -36,8 +36,8 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 <div class="energia"><label for="preco">Preço do combustível (R$/litro)</label><input id="preco" type="number" min="0" step=".01" placeholder="Informe o valor real"><small class="ajuda" id="ajudaPreco">Quanto você pagou por litro de combustível?</small></div>
 <div class="energia"><label for="consumo">Consumo da moto (km/litro)</label><input id="consumo" type="number" min=".1" step=".1" placeholder="Informe o consumo real"><small class="ajuda" id="ajudaConsumo">Quantos quilômetros sua moto faz com 1 litro? Use sua média real.</small></div>
 <div><label for="horas">Horas trabalhadas</label><input id="horas" type="number" min="0" step=".5" placeholder="Ex.: 8"><small class="ajuda">Quantas horas você trabalhou no dia?</small></div>
-<div><label for="diasSemana">Dias trabalhados por semana</label><input id="diasSemana" type="number" min="1" max="7" step="1" placeholder="Ex.: 6"><small class="ajuda">Necessário para dividir aluguel semanal entre os dias trabalhados.</small></div>
-<div><label for="diasMes">Dias trabalhados por mês</label><input id="diasMes" type="number" min="1" max="31" step="1" placeholder="Ex.: 24"><small class="ajuda">Necessário para dividir aluguel e despesas mensais.</small></div>
+<div id="campoDiasSemana" hidden><label for="diasSemana">Dias trabalhados por semana</label><input id="diasSemana" type="number" min="1" max="7" step="1" placeholder="Ex.: 6"><small class="ajuda">Necessário para dividir aluguel semanal entre os dias trabalhados.</small></div>
+<div id="campoDiasMes"><label for="diasMes">Dias trabalhados por mês</label><input id="diasMes" type="number" min="1" max="31" step="1" placeholder="Ex.: 24"><small class="ajuda">Necessário para dividir aluguel e despesas mensais.</small></div>
 </div>
 <div id="painelProprio" class="painelCustos"><h3>Custos do veículo próprio</h3><div class="grid">
 <div><label for="depreciacao">Depreciação do veículo (R$/km)</label><input id="depreciacao" type="text" inputmode="decimal" placeholder="Ex.: 0,10"><small class="ajuda">Perda estimada de valor do veículo por quilômetro rodado. Não é uma despesa paga no dia. Deixe em branco para considerar zero.</small></div>
@@ -61,7 +61,7 @@ footer{color:#9cacbd;font-size:13px;margin-top:32px}
 <div class="row"><span>Lucro estimado por km <details class="info"><summary aria-label="Explicação de lucro estimado por km" title="O que significa?">ⓘ</summary><span class="explicacao">Resultado estimado do dia dividido pelos quilômetros rodados.</span></details></span><span id="porKm"></span></div>
 <div class="row"><span>Lucro estimado por hora <details class="info"><summary aria-label="Explicação de lucro estimado por hora" title="O que significa?">ⓘ</summary><span class="explicacao">Resultado estimado do dia dividido pelas horas trabalhadas.</span></details></span><span id="porHora"></span></div>
 <p id="notaRateio"><small>Estimativa do dia. Despesas mensais são divididas pelos dias trabalhados informados.</small></p>
-<p><small>Estimativa de resultado após os custos informados. A depreciação representa perda de valor, não saída de dinheiro no dia; o resultado não é saldo de caixa nem lucro contábil definitivo.</small></p>
+<p id="notaFinal"><small>Estimativa de resultado após os custos informados. A depreciação representa perda de valor, não saída de dinheiro no dia; o resultado não é saldo de caixa nem lucro contábil definitivo.</small></p>
 <button id="copiar">Copiar resumo</button></section>
 <footer>Lucro na Rota • Versão inicial. Seus dados são calculados neste navegador e não são enviados a um servidor. Acompanhamento mensal será uma função futura.</footer>
 </main><script>
@@ -94,6 +94,9 @@ function ajustar(){
  document.querySelector('label[for=aluguel]').textContent=tipo.startsWith('carro_')?'Valor do aluguel do carro (R$)':'Valor do aluguel do veículo (R$)';
  el('linhaManut').hidden=modoAtual==='alugado';
  el('linhaExtras').hidden=modoAtual==='proprio';
+  const periodoAluguel=el('periodoAluguel').value;
+  el('campoDiasSemana').hidden=modoAtual!=='alugado'||periodoAluguel!=='semana';
+  el('campoDiasMes').hidden=modoAtual==='alugado'&&periodoAluguel!=='mes';
  calcular();
 }
 function selecionarModo(modo){
@@ -174,7 +177,8 @@ function calcular(){
  el('copiar').disabled=false;
  el('nomeEnergia').textContent=bike?'Energia / combustível':ehEletrico(tipo)?'Energia elétrica':'Combustível';
  el('nomeModalidade').textContent=proprio?'Manutenção e despesas mensais (rateadas)':'Aluguel do veículo (rateado)';
- el('notaRateio').textContent=proprio?
+ el('notaFinal').textContent=proprio?'A depreciação representa perda de valor, não saída de dinheiro no dia. O resultado não é saldo de caixa nem lucro contábil definitivo.':'Estimativa de resultado após combustível, aluguel e outras despesas informadas. Outros custos não incluídos podem existir.';
+  el('notaRateio').textContent=proprio?
   'Manutenção, financiamento, seguro e IPVA são convertidos em custos mensais e divididos pelos dias trabalhados. A depreciação por km é calculada separadamente.':
   'O aluguel é dividido pelos dias trabalhados conforme o período escolhido; as despesas extras são por dia.';
  el('lucro').textContent=brl(lucro);
@@ -198,7 +202,7 @@ for(const id of ['receita','km','horas','depreciacao','financiamento','seguro','
  el(id).addEventListener('input',calcular);
 }
 for(const id of ['preco','consumo'])el(id).addEventListener('input',()=>atualizarEnergia(id));
-el('periodoAluguel').addEventListener('change',calcular);
+el('periodoAluguel').addEventListener('change',ajustar);
 for(const id of ['periodoSeguro','periodoIpva'])el(id).addEventListener('change',calcular);
 el('abaProprio').addEventListener('click',()=>selecionarModo('proprio'));
 el('abaAlugado').addEventListener('click',()=>selecionarModo('alugado'));
