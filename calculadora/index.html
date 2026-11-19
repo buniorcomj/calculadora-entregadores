@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#142d24">
+  <meta name="description" content="Calcule grátis quanto sobra nas entregas depois do combustível, manutenção e outras despesas. Para moto, carro ou bicicleta, próprios ou alugados.">
+  <meta property="og:title" content="Calculadora para entregadores | Lucro na Rota">
+  <meta property="og:description" content="Descubra quanto sobra nas entregas depois dos gastos com o veículo e veja o resultado por hora e por quilômetro.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://buniorcomj.github.io/calculadora-entregadores/calculadora/">
+  <link rel="canonical" href="https://buniorcomj.github.io/calculadora-entregadores/calculadora/">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/calculadora.css">
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/calculadora.js" defer></script>
+  <title>Calculadora para entregadores | Lucro na Rota</title>
+  <link rel="icon" href="../assets/imagens/icone.png" type="image/png">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong>LUCRO NA ROTA</strong><small>Mais lucro, menos B.O.</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span>
+      </button>
+      <nav class="site-nav" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../">Início</a></li>
+          <li><a href="../calculadora/" aria-current="page">Calculadora</a></li>
+          <li><a href="../noticias/">Notícias e Dicas</a></li>
+          <li><a href="../sobre/">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo" tabindex="-1" class="calc">
+    <header class="calc-intro">
+      <div class="calc-wrap">
+        <p class="calc-kicker">Calculadora gratuita</p>
+        <h1>Quanto sobra no seu bolso?</h1>
+        <p>Descubra quanto sobra das suas entregas depois do combustível, da manutenção e dos outros gastos do veículo. Use seus números do dia e veja o resultado na hora.</p>
+      </div>
+    </header>
+
+    <div class="calc-wrap calc-layout">
+      <div class="calc-inputs">
+        <section class="calc-card" aria-labelledby="tituloDados">
+          <h2 id="tituloDados">Seus números do dia</h2>
+          <div class="calc-grid calc-grid-day">
+            <div class="calc-field">
+              <label for="receita">Faturamento do dia (R$)</label>
+              <input id="receita" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 200" aria-describedby="ajudaReceita">
+              <small id="ajudaReceita" class="calc-help">Digite sem separador de milhar. Ex.: 1250,50.</small>
+            </div>
+            <div class="calc-field">
+              <label for="km">Quilômetros rodados</label>
+              <input id="km" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 100" aria-describedby="ajudaKm">
+              <small id="ajudaKm" class="calc-help">A distância que você rodou trabalhando.</small>
+            </div>
+            <div class="calc-field">
+              <label for="horas">Horas trabalhadas</label>
+              <input id="horas" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 8" aria-describedby="ajudaHoras">
+              <small id="ajudaHoras" class="calc-help">Pode usar decimal. Ex.: 7,5 para 7h30.</small>
+            </div>
+          </div>
+          <a href="#resultado" class="calc-jump">Ir para o resultado</a>
+        </section>
+
+        <section class="calc-card" aria-labelledby="tituloVeiculo">
+          <h2 id="tituloVeiculo">Seu veículo e seus custos</h2>
+          <div class="calc-ownership">
+            <span id="tituloPropriedade" class="calc-field-label">Situação do veículo</span>
+            <div class="calc-tabs" role="group" aria-labelledby="tituloPropriedade" aria-describedby="ajudaPropriedade">
+              <button type="button" class="calc-tab" id="abaProprio" aria-pressed="true">Veículo próprio</button>
+              <button type="button" class="calc-tab" id="abaAlugado" aria-pressed="false">Veículo alugado</button>
+            </div>
+            <small id="ajudaPropriedade" class="calc-help">As configurações são salvas separadamente para cada tipo de veículo e modalidade.</small>
+          </div>
+
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label for="veiculo">Tipo de veículo</label>
+              <select id="veiculo">
+                <option value="combustao">Moto a combustão</option>
+                <option value="eletrico">Moto elétrica</option>
+                <option value="carro_combustao">Carro a combustão</option>
+                <option value="carro_eletrico">Carro elétrico</option>
+                <option value="ebike">Bicicleta elétrica</option>
+                <option value="bike">Bicicleta comum</option>
+              </select>
+            </div>
+            <div id="campoCombustivel" class="calc-field" hidden>
+              <label for="combustivel">Combustível</label>
+              <select id="combustivel" aria-describedby="ajudaCombustivel">
+                <option value="gasolina">Gasolina</option>
+                <option value="etanol">Etanol</option>
+              </select>
+              <small id="ajudaCombustivel" class="calc-help">Preço e consumo são salvos separadamente.</small>
+            </div>
+            <div class="calc-field energia">
+              <label for="preco">Preço do combustível (R$/litro)</label>
+              <input id="preco" type="text" inputmode="decimal" autocomplete="off" placeholder="Informe o valor real" aria-describedby="ajudaPreco">
+              <small class="calc-help" id="ajudaPreco">Quanto custa 1 litro do combustível selecionado?</small>
+            </div>
+            <div class="calc-field energia">
+              <label for="consumo">Consumo (km/litro)</label>
+              <input id="consumo" type="text" inputmode="decimal" autocomplete="off" placeholder="Informe o consumo real" aria-describedby="ajudaConsumo">
+              <small class="calc-help" id="ajudaConsumo">Quantos km seu veículo faz com 1 litro desse combustível?</small>
+            </div>
+            <div id="campoDiasSemana" class="calc-field" hidden>
+              <label for="diasSemana">Dias trabalhados por semana</label>
+              <input id="diasSemana" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex. 6" aria-describedby="ajudaDiasSemana">
+              <small id="ajudaDiasSemana" class="calc-help">Para dividir o aluguel semanal entre os dias de trabalho.</small>
+            </div>
+            <div id="campoDiasMes" class="calc-field">
+              <label for="diasMes">Dias trabalhados por mês</label>
+              <input id="diasMes" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex. 24" aria-describedby="ajudaDiasMes">
+              <small id="ajudaDiasMes" class="calc-help">Para dividir aluguel e despesas mensais.</small>
+            </div>
+          </div>
+
+          <div id="painelProprio" class="calc-costs">
+            <h3>Custos do veículo próprio</h3>
+            <p class="calc-help">Custos em branco valem zero. As despesas mensais são divididas pelos dias de trabalho. Para valores anuais, primeiro dividimos por 12.</p>
+            <div class="calc-grid">
+              <div class="calc-field">
+                <label for="depreciacao">Depreciação do veículo (R$/km)</label>
+                <input id="depreciacao" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 0,10" aria-describedby="ajudaDepreciacao">
+                <small id="ajudaDepreciacao" class="calc-help">Perda estimada de valor por km. Ex.: diferença entre compra e revenda dividida pela quilometragem prevista.</small>
+              </div>
+              <div class="calc-field">
+                <label for="financiamento">Prestação mensal (R$)</label>
+                <input id="financiamento" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 400" aria-describedby="ajudaFinanciamento">
+                <small id="ajudaFinanciamento" class="calc-help">Pagamento mensal do financiamento do veículo, se houver.</small>
+              </div>
+              <div class="calc-field">
+                <label for="seguro">Valor do seguro (R$)</label>
+                <input id="seguro" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 250" aria-describedby="ajudaSeguro">
+                <label for="periodoSeguro" class="calc-period">Período do seguro</label>
+                <select id="periodoSeguro" aria-describedby="ajudaSeguro">
+                  <option value="mensal">Mensal</option>
+                  <option value="anual">Anual</option>
+                </select>
+                <small id="ajudaSeguro" class="calc-help">Informe o valor total do período escolhido.</small>
+              </div>
+              <div class="calc-field">
+                <label for="ipva">Valor do IPVA (R$)</label>
+                <input id="ipva" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 1200" aria-describedby="ajudaIpva">
+                <label for="periodoIpva" class="calc-period">Período do IPVA</label>
+                <select id="periodoIpva" aria-describedby="ajudaIpva">
+                  <option value="anual">Anual</option>
+                  <option value="mensal">Mensal</option>
+                </select>
+                <small id="ajudaIpva" class="calc-help">Informe o valor total do ano ou o equivalente mensal.</small>
+              </div>
+              <div class="calc-field">
+                <label for="manutMensal">Manutenção habitual mensal (R$)</label>
+                <input id="manutMensal" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 200" aria-describedby="ajudaManutencao">
+                <small id="ajudaManutencao" class="calc-help">Média mensal de óleo, pneus, revisões e reparos comuns.</small>
+              </div>
+              <div class="calc-field">
+                <label for="consertoExtra">Conserto extraordinário do dia (R$)</label>
+                <input id="consertoExtra" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 0" aria-describedby="ajudaConserto">
+                <small id="ajudaConserto" class="calc-help">Um reparo pontual, descontado integralmente neste dia.</small>
+              </div>
+            </div>
+            <div id="exemploMoto" class="calc-example" hidden>
+              <button type="button" id="usarExemplo" class="calc-button calc-button-outline" aria-describedby="ajudaExemplo">Preencher exemplo de moto 150/160 cc</button>
+              <small id="ajudaExemplo" class="calc-help">Exemplo fictício para campos vazios: manutenção de R$ 120/mês e depreciação de R$ 0,10/km. Substitua pelos seus valores.</small>
+            </div>
+          </div>
+
+          <div id="painelAlugado" class="calc-costs" hidden>
+            <h3>Custos do veículo alugado</h3>
+            <p class="calc-help">Informe apenas as despesas sob sua responsabilidade. Manutenção e depreciação ficam fora da estimativa do veículo alugado.</p>
+            <div class="calc-grid">
+              <div class="calc-field">
+                <label for="aluguel">Valor do aluguel do veículo (R$)</label>
+                <input id="aluguel" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 350">
+              </div>
+              <div class="calc-field">
+                <label for="periodoAluguel">Período cobrado pelo aluguel</label>
+                <select id="periodoAluguel" aria-describedby="ajudaAluguel">
+                  <option value="semana">Por semana</option>
+                  <option value="dia">Por dia</option>
+                  <option value="mes">Por mês</option>
+                </select>
+                <small id="ajudaAluguel" class="calc-help">O aluguel será dividido pelos dias trabalhados no período.</small>
+              </div>
+              <div class="calc-field">
+                <label for="extrasAlugado">Outras despesas (R$/dia)</label>
+                <input id="extrasAlugado" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 0" aria-describedby="ajudaExtras">
+                <small id="ajudaExtras" class="calc-help">Só inclua o que você paga por fora do contrato de aluguel.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-storage">
+            <div>
+              <h3>Configurações neste navegador</h3>
+              <p id="statusSalvamento" class="calc-help" role="status">Os custos fixos podem ser salvos no navegador. Os números do dia ficam nesta página.</p>
+              <a href="../privacidade/" class="calc-privacy-link">Política de privacidade</a>
+            </div>
+            <button id="apagarConfiguracoes" type="button" class="calc-button calc-button-outline">Apagar configurações salvas</button>
+          </div>
+        </section>
+      </div>
+
+      <section id="resultado" class="calc-card calc-results" aria-labelledby="tituloResultado" tabindex="-1">
+        <div class="calc-score">
+          <div class="calc-score-heading">
+            <h2 id="tituloResultado">Resultado estimado do dia</h2>
+            <details class="calc-info"><summary aria-label="Sobre o resultado estimado">i</summary><span>Faturamento menos os custos informados e rateados. Para veículo próprio, a estimativa inclui a depreciação e a prestação quando informadas.</span></details>
+          </div>
+          <output id="lucro" class="calc-result">—</output>
+        </div>
+        <div class="calc-result-details">
+          <p id="erro" class="calc-error" role="alert" hidden></p>
+          <dl class="calc-breakdown">
+            <div class="calc-row">
+              <dt><span id="nomeEnergia">Combustível</span>
+                <details class="calc-info"><summary aria-label="Sobre combustível ou energia">i</summary><span>Custo da distância rodada, calculado com o consumo e o preço informados. Para bicicleta comum, é R$ 0,00.</span></details>
+              </dt>
+              <dd id="custoComb">—</dd>
+            </div>
+            <div class="calc-row" id="linhaManut">
+              <dt>Depreciação do veículo
+                <details class="calc-info"><summary aria-label="Sobre a depreciação">i</summary><span>Perda estimada de valor do veículo por quilômetro, multiplicada pela distância rodada.</span></details>
+              </dt>
+              <dd id="custoManut">—</dd>
+            </div>
+            <div class="calc-row">
+              <dt id="nomeModalidade">Manutenção e despesas mensais (rateadas)</dt>
+              <dd id="custoModalidade">—</dd>
+            </div>
+            <div class="calc-row" id="linhaExtraManut" hidden>
+              <dt>Conserto extraordinário do dia</dt>
+              <dd id="custoExtraManut">—</dd>
+            </div>
+            <div class="calc-row" id="linhaExtras" hidden>
+              <dt>Outras despesas do motorista</dt>
+              <dd id="custoExtras">—</dd>
+            </div>
+            <div class="calc-row calc-row-total">
+              <dt>Total de custos considerados
+                <details class="calc-info"><summary aria-label="Sobre o total de custos considerados">i</summary><span>Soma dos custos de energia e das despesas da modalidade selecionada, incluindo aluguel ou despesas mensais quando informados.</span></details>
+              </dt>
+              <dd id="custos">—</dd>
+            </div>
+            <div class="calc-row" id="linhaSemDep" hidden>
+              <dt>Resultado antes da reserva para depreciação
+                <details class="calc-info"><summary aria-label="Sobre o resultado antes da depreciação">i</summary><span>Faturamento menos os demais custos, incluindo despesas rateadas.</span></details>
+              </dt>
+              <dd id="semDep">—</dd>
+            </div>
+            <div class="calc-row">
+              <dt>Custo variável por km
+                <details class="calc-info"><summary aria-label="Sobre o custo variável por quilômetro">i</summary><span>Combustível ou energia por km, mais depreciação por km para veículo próprio.</span></details>
+              </dt>
+              <dd id="custoVariavelKm">—</dd>
+            </div>
+            <div class="calc-row">
+              <dt>Custo total médio por km
+                <details class="calc-info"><summary aria-label="Sobre o custo total por quilômetro">i</summary><span>Todos os custos considerados no dia, divididos pelos quilômetros rodados.</span></details>
+              </dt>
+              <dd id="custoTotalKm">—</dd>
+            </div>
+            <div class="calc-row">
+              <dt>Lucro estimado por km
+                <details class="calc-info"><summary aria-label="Sobre o lucro estimado por quilômetro">i</summary><span>Resultado estimado do dia dividido pelos quilômetros rodados.</span></details>
+              </dt>
+              <dd id="porKm">—</dd>
+            </div>
+            <div class="calc-row">
+              <dt>Lucro estimado por hora
+                <details class="calc-info"><summary aria-label="Sobre o lucro estimado por hora">i</summary><span>Resultado estimado do dia dividido pelas horas trabalhadas.</span></details>
+              </dt>
+              <dd id="porHora">—</dd>
+            </div>
+          </dl>
+          <div class="calc-notes">
+            <p id="notaRateio">Estimativa do dia. Despesas mensais são divididas pelos dias trabalhados informados.</p>
+            <p id="notaFinal">Para veículo próprio, a estimativa inclui a reserva para depreciação e a prestação informada.</p>
+          </div>
+          <button id="copiar" type="button" class="calc-button calc-button-primary" disabled>Copiar resumo do dia</button>
+          <p id="statusCopia" class="calc-help" role="status"></p>
+          <textarea id="resumoManual" hidden readonly aria-label="Resumo para copiar manualmente"></textarea>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>LUCRO NA ROTA</strong><small>Mais lucro, menos B.O.</small></span>
+        </a>
+        <nav class="footer-nav" aria-label="Links do rodapé">
+          <ul>
+            <li><a href="../sobre/">Sobre o Lucro na Rota</a></li>
+            <li><a href="../criterios-editoriais/">Critérios editoriais</a></li>
+            <li><a href="../privacidade/">Política de privacidade</a></li>
+            <li><a href="../calculadora/">Calculadora gratuita</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-legal">© 2026 Lucro na Rota.</p>
+    </div>
+  </footer>
+</body>
+</html>

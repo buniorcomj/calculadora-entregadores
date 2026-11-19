@@ -32,3 +32,11 @@ Registrar novas decisões nesta ata, atualizar o Projeto Mestre quando mudarem r
 - O proprietário levantou a **tarifação elétrica por horário do dia (ponta/intermediário/fora de ponta)** para veículos elétricos. Isso é diferente da decisão anterior de conservar o valor da tarifa R$/kWh ao trocar o tipo de veículo.
 - A forma de cálculo e a prioridade (MVP 1.0 ou atualização posterior) ainda **não foram aprovadas**. Manter como questão em aberto sem sobrepor a ordem de versões aprovada.
 - Referência: ANEEL Tarifa Branca e Postos Tarifários.
+
+## Portal Lucro na Rota — 19/11/2026
+
+- A entrega de revisão reúne página inicial, calculadora diária em `/calculadora/`, arquivo de notícias com uma reportagem e páginas institucionais. O recorte segue o briefing do portal. As propostas anteriores de períodos, promoções, metas e histórico seguem no planejamento.
+- A integração preserva as fórmulas financeiras da calculadora existente e as configurações já salvas. A página da ferramenta passa a oferecer a opção de apagar as configurações locais.
+- A identidade usa verde, fundo claro e imagens ilustrativas próprias. Guarulhos é a base inicial do projeto, que trata de entregas em âmbito nacional.
+- O portal usa arquivos estáticos com caminhos relativos compatíveis com o GitHub Pages. A revisão acontece em `desenvolvimento/portal-lucro-na-rota`, com publicação em `main` condicionada à aprovação do proprietário. A data de 19/11/2026 para a reportagem é proposta.
+- A política descreve o uso do armazenamento do navegador e os registros técnicos documentados pelo provedor. Planilha, comunidade, publicidade e funcionalidades premium permanecem em planejamento.

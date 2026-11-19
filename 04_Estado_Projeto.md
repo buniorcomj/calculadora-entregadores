@@ -1,4 +1,15 @@
 # Estado do projeto
+
+## Revisão do portal — 19/11/2026
+
+- **Fase.** Portal funcional na branch `desenvolvimento/portal-lucro-na-rota`, para revisão do proprietário. O endereço público continua a usar a versão da branch `main` no GitHub Pages.
+- **Entrega.** Início, calculadora com identidade visual nova, arquivo de notícias, reportagem de apresentação, páginas Sobre, Privacidade e Critérios Editoriais e modelo para novas matérias.
+- **Arquivos.** O portal ocupa `index.html`. As páginas ficam nas pastas correspondentes, os recursos compartilhados em `assets/` e os testes em `tests/`.
+- **Verificação.** O [relatório de revisão](docs/revisao/relatorio.md) registra resultados, capturas e limites. O [README](README.md) explica como abrir a prévia e repetir as verificações.
+- **Próxima etapa.** Revisar o protótipo e confirmar o conteúdo e a data de publicação antes de aprovar a atualização da versão pública. Acompanhar os itens do planejamento nas etapas seguintes.
+
+## Registro de 30/10/2026
+
 Atualizado em: 30/10/2026
 Fase: planejamento concluído para a etapa de arquitetura; protótipo inicial existente; MVP 1.0 ainda não concluído.
 
