@@ -36,7 +36,7 @@ O [relatório de revisão](docs/revisao/relatorio.md) registra os testes executa
 ## Antes de publicar
 
 - Revise a branch e aprove o conteúdo, a identidade visual e a calculadora. Combine a data de lançamento antes de qualquer alteração em `main`.
-- A primeira reportagem usa **19/11/2026** como data proposta. Na publicação aprovada, registre a data efetiva na matéria, nos metadados e no card do arquivo.
+- As páginas de revisão ficam sem data de publicação. Após a aprovação, registre em cada matéria e no card correspondente a data efetiva de publicação e inclua os metadados. A data de consulta das fontes pode ser anterior à publicação.
 - Após a integração autorizada em `main`, confira o endereço público em HTTPS, incluindo a rota `/calculadora/` dentro do prefixo `/calculadora-entregadores/`.
 - Planilha, comunidade, anúncios, contas e pagamentos ficam para futuras etapas. A hospedagem atual atende esta revisão com custo adicional de R$ 0.
 

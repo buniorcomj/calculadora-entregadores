@@ -7,7 +7,7 @@ Referência jurídica conferida em 23/11/2026. Folha projetada com os parâmetro
 - Permanência é fim menos início. Se o turno atravessa meia-noite, some 24 horas ao fim. Horários iguais não representam 24 horas.
 - Tempo dedicado é permanência menos almoço e pausas livres. Horas efetivas são tempo dedicado menos espera em disponibilidade. As horas excedentes do aplicativo são a diferença positiva entre suas horas dedicadas semanais e a jornada contratual CLT, para comparação econômica.
 - Dias ativos no ano = 12 × dias do mês típico − dias de férias sem receita − outros dias sem trabalhar. Informe só dias de trabalho que foram perdidos. A semana típica serve para estimar horas e o equivalente por semana trabalhada, sem multiplicar a mesma semana por 52 na projeção anual.
-- Resultado operacional diário = faturamento − custos informados. Resultado operacional anual = resultado diário × dias ativos + bônus anuais ainda não incluídos. Disponível anual = operacional anual − 12 × (INSS ou DAS, seguro, outros tributos e reserva mensais). Informe os valores previdenciários e tributários que se aplicam à sua atividade.
+- Resultado operacional diário = faturamento − custos informados. Resultado operacional anual = resultado diário × dias ativos + bônus anuais ainda não incluídos. Renda comparável anual = operacional anual − 12 × (INSS ou DAS, seguro e outros tributos mensais). Disponível anual = renda comparável anual − 12 × reserva mensal. A comparação e as metas usam renda antes de reservas pessoais em ambos os lados. Informe os valores previdenciários e tributários que se aplicam à sua atividade.
 - O disponível por dia divide o total anual pelos dias ativos. Por semana trabalhada, multiplica essa média pelos dias da semana típica. A média mensal divide por 12. Por hora, divide pelas horas anuais do tipo escolhido.
 
 ## Folha CLT
@@ -20,8 +20,8 @@ Referência jurídica conferida em 23/11/2026. Folha projetada com os parâmetro
 
 ## Comparação e metas
 
-- Projeção CLT em tempo equivalente = (líquido anual, com ou sem benefícios) ÷ horas dedicadas CLT no ano × horas dedicadas ao aplicativo no ano. Assume taxa por hora constante e deixa o FGTS fora.
-- Meta anual de faturamento regular no aplicativo = máximo entre zero e (valor CLT de referência + custos diários do veículo × dias ativos + despesas e reservas anuais − bônus extras). Meta diária divide pelos dias ativos. Essas metas supõem custos por dia e despesas informadas constantes.
+- Projeção CLT em tempo equivalente = (líquido anual, com ou sem benefícios) ÷ horas dedicadas CLT no ano × horas dedicadas ao aplicativo no ano. Assume taxa por hora constante e deixa o FGTS fora. É equivalência econômica, sem apuração de horas extras legais.
+- Meta anual de faturamento regular no aplicativo = máximo entre zero e (valor CLT de referência + custos diários do veículo × dias ativos + despesas anuais − bônus extras). Meta diária divide pelos dias ativos. Essas metas supõem custos por dia e despesas informadas constantes.
 
 ## Fontes e testes
 

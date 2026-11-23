@@ -14,6 +14,7 @@ PREFIXO = urlsplit(BASE).path
 PAGINAS = {
     "index.html": "",
     "aplicativo-x-clt/index.html": "aplicativo-x-clt/",
+    "noticias/como-registrar-ganhos-e-gastos.html": "noticias/como-registrar-ganhos-e-gastos.html",
     "noticias/clt-ou-aplicativo.html": "noticias/clt-ou-aplicativo.html",
     "calculadora/index.html": "calculadora/",
     "noticias/index.html": "noticias/",
@@ -25,8 +26,13 @@ PAGINAS = {
 
 
 class Documento(HTMLParser):
+    VAZIOS = set("area base br col embed hr img input link meta param source track wbr".split())
+    RAIZ = ["html", "head", "body"]
     def __init__(self, arquivo):
         super().__init__(convert_charrefs=True)
+        self.abertos = []
+        self.raiz = []
+        self.erros_html = []
         self.ids = set()
         self.duplicados = set()
         self.links = []
@@ -38,8 +44,26 @@ class Documento(HTMLParser):
         self.lang = ""
         self.feed(arquivo.read_text(encoding="utf-8"))
         self.close()
+        if self.abertos:
+            self.erros_html.append(f"tags sem fechamento: {', '.join(self.abertos)}")
+        if self.raiz != self.RAIZ:
+            self.erros_html.append("esperados html, head e body únicos e na ordem correta")
+
+    def handle_endtag(self, tag):
+        if not self.abertos or self.abertos[-1] != tag:
+            linha, _ = self.getpos()
+            self.erros_html.append(f"linha {linha}: fechamento inesperado </{tag}>")
+            return
+        self.abertos.pop()
 
     def handle_starttag(self, tag, atributos):
+        if tag in self.RAIZ:
+            pai = [] if tag == "html" else ["html"]
+            if self.abertos != pai:
+                self.erros_html.append(f"<{tag}> fora da posição esperada")
+            self.raiz.append(tag)
+        if tag not in self.VAZIOS:
+            self.abertos.append(tag)
         attr = dict(atributos)
         if tag == "html":
             self.lang = attr.get("lang", "")
@@ -85,6 +109,7 @@ def verificar(preview):
             continue
         documento = Documento(arquivo)
         documentos[arquivo] = documento
+        erros.extend(f"{pagina}: {erro}" for erro in documento.erros_html)
         if documento.duplicados:
             erros.append(f"{pagina}: IDs duplicados: {', '.join(sorted(documento.duplicados))}")
         if documento.canonicos != [urljoin(BASE, PAGINAS[pagina])]:

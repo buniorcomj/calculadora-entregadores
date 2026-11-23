@@ -1,5 +1,12 @@
 # Estado do projeto
 
+## Revisão para lançamento — 23/11/2026
+
+- Reportagem CLT com estrutura HTML corrigida e teste de fechamento de tags na navegação.
+- Comparação e metas antes de reservas pessoais. Dinheiro disponível após reserva aparece em separado.
+- Matéria sobre ganhos, gastos e reservas abre a seção editorial. A reportagem CLT vem em seguida. Datas de publicação serão registradas após aprovação.
+- Ajuda de depreciação inclui referências externas e suas limitações.
+
 ## Aplicativo x CLT — 23/11/2026
 
 - Calculadora independente e segunda reportagem prontas para revisão na branch de desenvolvimento. A calculadora de entregas e corridas mantém seus arquivos e fórmulas.

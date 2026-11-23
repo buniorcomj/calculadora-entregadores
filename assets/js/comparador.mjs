@@ -44,11 +44,13 @@ export function aplicativo(d, tempo, referenciaSemanal) {
     throw new Error('Confira os dias de aplicativo por semana e por mês e os dias de folga e férias no ano.');
   }
   const operacionalDia = d.receita - d.custo;
-  const despesas = 12 * (d.previdencia + d.seguro + d.tributos + d.reserva);
+  const despesas = 12 * (d.previdencia + d.seguro + d.tributos);
   const operacionalAno = operacionalDia * diasAno + d.bonus;
-  const disponivel = operacionalAno - despesas;
+  const rendaComparavel = operacionalAno - despesas;
+  const reservaAno = 12 * d.reserva;
+  const disponivel = rendaComparavel - reservaAno;
   const horas = tempo.dedicado * diasAno;
-  return { ...tempo, diasAno, operacionalDia, operacionalAno, disponivel, despesas, horas,
+  return { ...tempo, diasAno, operacionalDia, operacionalAno, rendaComparavel, reservaAno, disponivel, despesas, horas,
     faturamentoAno: d.receita * diasAno + d.bonus, custoDia: d.custo, bonus: d.bonus,
     dia: disponivel / diasAno, semanaAtiva: disponivel / diasAno * d.diasSemana,
     excedente: Math.max(0, tempo.dedicado * d.diasSemana - referenciaSemanal) };

@@ -61,6 +61,8 @@ test('Resultado operacional, projeção e custos do autônomo são separados', (
   const a = aplicativo(appDados, jornada('08:00', '20:00', 60, 60, 90), 40);
   assert.equal(a.diasAno, 210);
   assert.equal(a.operacionalAno, 32500);
+  assert.equal(a.rendaComparavel, 30580);
+  assert.equal(a.reservaAno, 480);
   assert.equal(a.disponivel, 30100);
   assert.equal(a.excedente, 10);
   assert.equal(a.horas, 2100);
@@ -71,9 +73,12 @@ test('A meta de faturamento cobre custos, abate bônus e exclui FGTS', () => {
   const a = aplicativo(appDados, tempoClt, 40);
   const c = empregado(cltDados, tempoClt);
   const e = equivalencia(a, c);
-  assert.equal(e.faturamentoCaixa, c.liquidoAno + 11900);
+  assert.equal(e.faturamentoCaixa, c.liquidoAno + 11420);
+  const semReserva = aplicativo({ ...appDados, reserva: 0 }, tempoClt, 40);
+  assert.deepEqual(equivalencia(semReserva, c), e);
+  assert.equal(semReserva.rendaComparavel, a.rendaComparavel);
   assert.equal(e.faturamentoPacote, e.faturamentoCaixa + c.beneficiosAno);
-  assert.equal(e.faturamentoMesmoTempo, e.mesmoTempo + 11900);
+  assert.equal(e.faturamentoMesmoTempo, e.mesmoTempo + 11420);
 });
 
 test('Transição da EC 141 por data de referência', () => {
