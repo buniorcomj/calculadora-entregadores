@@ -6,9 +6,9 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#142d24">
-  <meta name="description" content="Calcule grátis quanto sobra nas entregas depois do combustível, manutenção e outras despesas. Para moto, carro ou bicicleta, próprios ou alugados.">
-  <meta property="og:title" content="Calculadora para entregadores | Lucro na Rota">
-  <meta property="og:description" content="Descubra quanto sobra nas entregas depois dos gastos com o veículo e veja o resultado por hora e por quilômetro.">
+  <meta name="description" content="Calcule grátis quanto sobra no delivery de refeições, nas entregas de encomendas e no transporte de passageiros.">
+  <meta property="og:title" content="Calculadora para entregas e corridas | Lucro na Rota">
+  <meta property="og:description" content="Descubra quanto sobra nas entregas e corridas depois dos gastos com o veículo e veja o resultado por hora e por quilômetro.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://buniorcomj.github.io/calculadora-entregadores/calculadora/">
   <link rel="canonical" href="https://buniorcomj.github.io/calculadora-entregadores/calculadora/">
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../assets/css/calculadora.css">
   <script src="../assets/js/site.js" defer></script>
   <script src="../assets/js/calculadora.js" defer></script>
-  <title>Calculadora para entregadores | Lucro na Rota</title>
+  <title>Calculadora para entregas e corridas | Lucro na Rota</title>
   <link rel="icon" href="../assets/imagens/icone.png" type="image/png">
 </head>
 <body>
@@ -45,7 +45,7 @@
       <div class="calc-wrap">
         <p class="calc-kicker">Calculadora gratuita</p>
         <h1>Quanto sobra no seu bolso?</h1>
-        <p>Descubra quanto sobra das suas entregas depois do combustível, da manutenção e dos outros gastos do veículo. Use seus números do dia e veja o resultado na hora.</p>
+        <p>Faz delivery de refeições, entrega encomendas ou transporta passageiros? Use a mesma calculadora pra ver quanto sobra do seu dia depois dos gastos.</p>
       </div>
     </header>
 
@@ -57,7 +57,7 @@
             <div class="calc-field">
               <label for="receita">Faturamento do dia (R$)</label>
               <input id="receita" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 200" aria-describedby="ajudaReceita">
-              <small id="ajudaReceita" class="calc-help">Digite sem separador de milhar. Ex.: 1250,50.</small>
+              <small id="ajudaReceita" class="calc-help">Digite sem separador de milhar, como 1250,50. Se informar o valor líquido do app, as taxas já abatidas ficam fora dos outros gastos.</small>
             </div>
             <div class="calc-field">
               <label for="km">Quilômetros rodados</label>
@@ -68,6 +68,11 @@
               <label for="horas">Horas trabalhadas</label>
               <input id="horas" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 8" aria-describedby="ajudaHoras">
               <small id="ajudaHoras" class="calc-help">Pode usar decimal. Ex.: 7,5 para 7h30.</small>
+            </div>
+            <div class="calc-field">
+              <label for="gastosDia">Outros gastos do dia (R$, opcional)</label>
+              <input id="gastosDia" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 0" aria-describedby="ajudaGastosDia">
+              <small id="ajudaGastosDia" class="calc-help">Some pedágios sem reembolso, estacionamento e taxas operacionais pagas à parte. Deixe de fora taxas já abatidas do faturamento e despesas lançadas em outro campo ou incluídas no aluguel.</small>
             </div>
           </div>
           <a href="#resultado" class="calc-jump">Ir para o resultado</a>
@@ -194,11 +199,6 @@
                 </select>
                 <small id="ajudaAluguel" class="calc-help">O aluguel será dividido pelos dias trabalhados no período.</small>
               </div>
-              <div class="calc-field">
-                <label for="extrasAlugado">Outras despesas (R$/dia)</label>
-                <input id="extrasAlugado" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 0" aria-describedby="ajudaExtras">
-                <small id="ajudaExtras" class="calc-help">Só inclua o que você paga por fora do contrato de aluguel.</small>
-              </div>
             </div>
           </div>
 
@@ -244,8 +244,8 @@
               <dt>Conserto extraordinário do dia</dt>
               <dd id="custoExtraManut">—</dd>
             </div>
-            <div class="calc-row" id="linhaExtras" hidden>
-              <dt>Outras despesas do motorista</dt>
+            <div class="calc-row" id="linhaExtras">
+              <dt>Outros gastos do dia</dt>
               <dd id="custoExtras">—</dd>
             </div>
             <div class="calc-row calc-row-total">

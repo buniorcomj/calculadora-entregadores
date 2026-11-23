@@ -1,5 +1,16 @@
 # Estado do projeto
 
+## Aplicativo x CLT — 23/11/2026
+
+- Calculadora independente e segunda reportagem prontas para revisão na branch de desenvolvimento. A calculadora de entregas e corridas mantém seus arquivos e fórmulas.
+- Metodologia, fontes oficiais e cenários de teste em [Comparador Aplicativo x CLT](docs/comparador-aplicativo-clt.md). A versão definitiva aguarda aprovação.
+
+## Ajustes para revisão — 23/11/2026
+
+- A calculadora tem um campo opcional de outros gastos do dia para veículos próprios e alugados. O valor vale para a sessão e não é reaproveitado de perfis antigos.
+- O portal apresenta delivery de refeições como especialidade e também atende entregas de encomendas e transporte de passageiros.
+- A prévia na branch de desenvolvimento está pronta para aprovação. As 70 verificações da calculadora e a navegação das 7 páginas passaram.
+
 ## Revisão do portal — 19/11/2026
 
 - **Fase.** Portal funcional na branch `desenvolvimento/portal-lucro-na-rota`, para revisão do proprietário. O endereço público continua a usar a versão da branch `main` no GitHub Pages.

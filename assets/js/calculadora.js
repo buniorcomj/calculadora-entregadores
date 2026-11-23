@@ -15,7 +15,7 @@
   const padrao = {
     diasSemana: '', diasMes: '', financiamento: '', seguro: '', periodoSeguro: 'mensal',
     ipva: '', periodoIpva: 'anual', manutMensal: '', depreciacao: '', aluguel: '',
-    periodoAluguel: 'semana', extrasAlugado: ''
+    periodoAluguel: 'semana'
   };
   const camposFixos = Object.keys(padrao);
   const camposEnergia = ['preco', 'consumo'];
@@ -110,7 +110,7 @@
     try {
       const dados = { versao: 2, ultimoModo: modoAtual, ultimoTipo: tipoAtual, perfis };
       localStorage.setItem(chave, JSON.stringify(dados));
-      el('statusSalvamento').textContent = 'Configurações fixas salvas neste navegador. Faturamento, km, horas e consertos do dia ficam nesta página.';
+      el('statusSalvamento').textContent = 'Configurações fixas salvas neste navegador. Faturamento, km, horas, consertos e outros gastos do dia ficam nesta página.';
     } catch {
       el('statusSalvamento').textContent = 'O navegador bloqueou o salvamento. Os dados ficam disponíveis somente nesta página.';
     }
@@ -163,7 +163,6 @@
     el('linhaManut').hidden = !proprio;
     el('linhaSemDep').hidden = !proprio;
     el('linhaExtraManut').hidden = !proprio;
-    el('linhaExtras').hidden = proprio;
     calcular();
   }
 
@@ -256,7 +255,7 @@
       manutMensal: proprio ? numero('manutMensal', true) : 0,
       consertoExtra: proprio ? numero('consertoExtra', true) : 0,
       aluguel: proprio ? 0 : numero('aluguel', true),
-      extras: proprio ? 0 : numero('extrasAlugado', true),
+      extras: numero('gastosDia', true),
       diasSemana: usaDiasSemana ? numero('diasSemana', true) : 0,
       diasMes: usaDiasMes ? numero('diasMes', true) : 0
     };
@@ -344,7 +343,7 @@
       proprio ? 'Manutenção e despesas mensais rateadas: ' + brl(custoModalidade) : 'Aluguel rateado: ' + brl(custoModalidade),
       proprio ? 'Depreciação: ' + brl(depreciacao) : null,
       proprio ? 'Conserto extraordinário: ' + brl(consertoExtra) : null,
-      !proprio ? 'Outras despesas: ' + brl(d.extras) : null,
+      !proprio || d.extras > 0 ? 'Outros gastos do dia: ' + brl(d.extras) : null,
       'Custo total: ' + brl(custos),
       'Custo médio por km: ' + resultados.custoTotalKm,
       'Resultado estimado do dia: ' + brl(lucro),
@@ -372,7 +371,7 @@
       calcular();
     });
   }
-  for (const id of ['receita', 'km', 'horas', 'consertoExtra']) {
+  for (const id of ['receita', 'km', 'horas', 'consertoExtra', 'gastosDia']) {
     el(id).addEventListener('input', calcular);
   }
   el('combustivel').addEventListener('change', trocarCombustivel);

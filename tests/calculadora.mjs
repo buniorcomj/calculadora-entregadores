@@ -157,7 +157,8 @@ function carregar(versao, { dados = new Map(), copiar = true, confirma = true, a
       if (id === 'modo') {
         obter(valor === 'alugado' ? 'abaAlugado' : 'abaProprio').disparar('click');
       } else {
-        const entrada = obter(id);
+        const campo = id === 'extrasAlugado' && elementos.has('gastosDia') ? 'gastosDia' : id;
+        const entrada = obter(campo);
         entrada.value = valor;
         entrada.disparar(seletores.has(id) ? 'change' : 'input');
       }
@@ -295,9 +296,31 @@ if (!somenteOriginal) {
           await calc.obter('copiar').disparar('click');
         }
         for (const id of ids) assert.equal(depois.obter(id).textContent, antes.obter(id).textContent, id);
-        assert.equal(depois.copia[0], antes.copia[0]);
+        assert.equal(depois.copia[0], antes.copia[0].replace('Outras despesas:', 'Outros gastos do dia:'));
       });
     }
+  });
+
+  test('Outros gastos entram uma vez em cada modo e ficam só na sessão', async () => {
+    const calc = carregar(integrada);
+    calc.preencher({ ...dadosBasicos, veiculo: 'bike', gastosDia: '12,50' });
+    verificarValores(calc, { custoExtras: 12.50, custos: 12.50, lucro: 87.50, semDep: 87.50 });
+    await calc.obter('copiar').disparar('click');
+    assert.match(calc.copia[0], /Outros gastos do dia: R\$\s12,50/);
+
+    calc.preencher({ modo: 'alugado', aluguel: '20', periodoAluguel: 'dia' });
+    assert.equal(calc.obter('gastosDia').value, '12,50');
+    verificarValores(calc, { custoExtras: 12.50, custos: 32.50, lucro: 67.50 });
+    calc.preencher({ gastosDia: '-1' });
+    assert.equal(calc.obter('erro').hidden, false);
+    calc.preencher({ gastosDia: '' });
+    verificarValores(calc, { custoExtras: 0, custos: 20, lucro: 80 });
+
+    calc.preencher({ gastosDia: '12,50', aluguel: '21' });
+    assert.ok([...calc.dados.values()].every(valor => !valor.includes('12,50')));
+    const restaurada = carregar(integrada, { dados: calc.dados });
+    assert.equal(restaurada.obter('gastosDia').value, '');
+    assert.equal(restaurada.obter('aluguel').value, '21');
   });
 
   test('Restaurar, cancelar exclusão e apagar configurações antigas', () => {

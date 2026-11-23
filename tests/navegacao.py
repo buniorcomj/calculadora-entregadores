@@ -13,6 +13,8 @@ ORIGEM = urlsplit(BASE).netloc
 PREFIXO = urlsplit(BASE).path
 PAGINAS = {
     "index.html": "",
+    "aplicativo-x-clt/index.html": "aplicativo-x-clt/",
+    "noticias/clt-ou-aplicativo.html": "noticias/clt-ou-aplicativo.html",
     "calculadora/index.html": "calculadora/",
     "noticias/index.html": "noticias/",
     "noticias/apresentacao.html": "noticias/apresentacao.html",

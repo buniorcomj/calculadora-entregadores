@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#142d24">
+  <meta name="description" content="Compare renda líquida, jornada e benefícios no aplicativo e na CLT.">
+  <link rel="canonical" href="https://buniorcomj.github.io/calculadora-entregadores/aplicativo-x-clt/">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/calculadora.css">
+  <script src="../assets/js/site.js" defer></script>
+  <script src="../assets/js/comparador-ui.mjs" type="module"></script>
+  <title>Aplicativo x CLT | Lucro na Rota</title>
+  <link rel="icon" href="../assets/imagens/icone.png" type="image/png">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong>LUCRO NA ROTA</strong><small>Mais lucro, menos B.O.</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span>
+      </button>
+      <nav class="site-nav" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../">Início</a></li>
+          <li><a href="../calculadora/">Calculadora</a></li>
+          <li><a href="../noticias/">Notícias e Dicas</a></li>
+          <li><a href="../sobre/">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo" tabindex="-1" class="calc">
+    <header class="calc-intro"><div class="calc-wrap">
+      <h1>Aplicativo x CLT</h1>
+      <p>Compare dinheiro no bolso, horas da jornada e benefícios. Os valores iniciais são fictícios.</p>
+    </div></header>
+    <div class="calc-wrap calc-layout">
+      <div class="calc-inputs">
+        <section class="calc-card" aria-labelledby="titulo-app"><h2 id="titulo-app">Trabalho por aplicativo</h2>
+          <div class="calc-grid">
+            <div class="calc-field"><label for="receita">Faturamento por dia (R$)</label><input id="receita" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="receita-ajuda" value="240" autocomplete="off"><small class="calc-help" id="receita-ajuda">Se o valor já veio líquido da plataforma, não repita as taxas nos custos.</small></div>
+            <div class="calc-field"><label for="custo">Custos do veículo por dia (R$)</label><input id="custo" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="custo-ajuda" value="60" autocomplete="off"><small class="calc-help" id="custo-ajuda">Use o total da calculadora de entregas e corridas. Inclua cada gasto uma só vez.</small></div>
+            <div class="calc-field"><label for="appSemana">Dias em uma semana típica</label><input id="appSemana" type="text" inputmode="numeric" data-min="1" data-max="7" value="5" autocomplete="off"></div>
+            <div class="calc-field"><label for="appMes">Dias em um mês típico</label><input id="appMes" type="text" inputmode="numeric" data-min="1" data-max="31" aria-describedby="appMes-ajuda" value="22" autocomplete="off"><small class="calc-help" id="appMes-ajuda">Antes de descontar férias e faltas anuais.</small></div>
+            <div class="calc-field"><label for="appInicio">Início</label><input id="appInicio" type="time" value="08:00" autocomplete="off"></div>
+            <div class="calc-field"><label for="appFim">Término</label><input id="appFim" type="time" aria-describedby="appFim-ajuda" value="20:00" autocomplete="off"><small class="calc-help" id="appFim-ajuda">Um horário menor indica término no dia seguinte.</small></div>
+            <div class="calc-field"><label for="appAlmoco">Intervalo de almoço (min)</label><input id="appAlmoco" type="text" inputmode="numeric" data-min="0" data-max="1439" value="60" autocomplete="off"></div>
+            <div class="calc-field"><label for="appPausas">Outras pausas livres (min)</label><input id="appPausas" type="text" inputmode="numeric" data-min="0" data-max="1439" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="espera">Aguardando corridas ou pedidos (min)</label><input id="espera" type="text" inputmode="numeric" data-min="0" data-max="1439" aria-describedby="espera-ajuda" value="90" autocomplete="off"><small class="calc-help" id="espera-ajuda">Tempo disponível para o aplicativo, separado do tempo em serviço.</small></div>
+          </div>
+          <details class="calc-costs"><summary>Opções avançadas</summary>          <div class="calc-grid">
+            <div class="calc-field"><label for="appFerias">Dias de trabalho perdidos em férias no ano</label><input id="appFerias" type="text" inputmode="numeric" data-min="0" data-max="365" value="20" autocomplete="off"></div>
+            <div class="calc-field"><label for="appAusencias">Outros dias de trabalho perdidos no ano</label><input id="appAusencias" type="text" inputmode="numeric" data-min="0" data-max="365" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="bonus">Bônus no ano (R$)</label><input id="bonus" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="bonus-ajuda" value="0" autocomplete="off"><small class="calc-help" id="bonus-ajuda">Só o que ainda não entrou no faturamento.</small></div>
+            <div class="calc-field"><label for="previdencia">INSS ou DAS-MEI por mês (R$)</label><input id="previdencia" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="previdencia-ajuda" value="0" autocomplete="off"><small class="calc-help" id="previdencia-ajuda">Informe o valor que você paga e evite repetir o DAS em tributos.</small></div>
+            <div class="calc-field"><label for="seguro">Seguro por mês (R$)</label><input id="seguro" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="seguro-ajuda" value="0" autocomplete="off"><small class="calc-help" id="seguro-ajuda">Informe apenas a parte não incluída nos custos do veículo.</small></div>
+            <div class="calc-field"><label for="tributos">Outros tributos por mês (R$)</label><input id="tributos" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="reserva">Reserva por mês (R$)</label><input id="reserva" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="reserva-ajuda" value="0" autocomplete="off"><small class="calc-help" id="reserva-ajuda">Dinheiro separado para imprevistos. Reduz o valor disponível para gastar.</small></div>
+          </div>
+          </details>
+          <p><a href="../calculadora/">Calcular os custos do veículo</a></p>
+        </section>
+        <section class="calc-card" aria-labelledby="titulo-clt"><h2 id="titulo-clt">Emprego CLT</h2>
+          <p class="calc-help">Informe seu turno típico, como em escala 5×2 ou 12×36. Use as horas do contrato e os plantões reais para simular a escala.</p>
+          <div class="calc-grid">
+            <div class="calc-field"><label for="salario">Salário-base bruto por mês (R$)</label><input id="salario" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="3500" autocomplete="off"></div>
+            <div class="calc-field"><label for="contrato">Jornada contratual semanal (h)</label><input id="contrato" type="text" inputmode="decimal" data-min="1" data-max="168" value="40" autocomplete="off"></div>
+            <div class="calc-field"><label for="cltSemana">Plantões ou dias em uma semana típica</label><input id="cltSemana" type="text" inputmode="decimal" data-min="0.1" data-max="7" value="5" autocomplete="off"></div>
+            <div class="calc-field"><label for="cltMes">Dias ou plantões em um mês típico</label><input id="cltMes" type="text" inputmode="numeric" data-min="1" data-max="31" aria-describedby="cltMes-ajuda" value="22" autocomplete="off"><small class="calc-help" id="cltMes-ajuda">Antes de descontar férias e folgas adicionais anuais.</small></div>
+            <div class="calc-field"><label for="cltInicio">Início</label><input id="cltInicio" type="time" value="08:00" autocomplete="off"></div>
+            <div class="calc-field"><label for="cltFim">Término</label><input id="cltFim" type="time" aria-describedby="cltFim-ajuda" value="18:00" autocomplete="off"><small class="calc-help" id="cltFim-ajuda">Um horário menor indica término no dia seguinte.</small></div>
+            <div class="calc-field"><label for="cltAlmoco">Intervalo de almoço (min)</label><input id="cltAlmoco" type="text" inputmode="numeric" data-min="0" data-max="1439" value="120" autocomplete="off"></div>
+            <div class="calc-field"><label for="cltPausas">Outras pausas livres (min)</label><input id="cltPausas" type="text" inputmode="numeric" data-min="0" data-max="1439" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="data">Data do cenário</label><input id="data" type="date" min="2026-01-01" max="2026-12-31" aria-describedby="data-ajuda" value="2026-11-23" autocomplete="off"><small class="calc-help" id="data-ajuda">Tabelas de folha disponíveis para 2026.</small></div>
+          </div>
+          <details class="calc-costs"><summary>Opções avançadas</summary><p><label for="calcularDsr"><input type="checkbox" id="calcularDsr" checked> Estimar DSR sobre horas extras pagas</label></p>          <div class="calc-grid">
+            <div class="calc-field"><label for="cltFerias">Dias de trabalho substituídos por férias no ano</label><input id="cltFerias" type="text" inputmode="numeric" data-min="0" data-max="365" value="22" autocomplete="off"></div>
+            <div class="calc-field"><label for="cltAusencias">Outras folgas e ausências no ano</label><input id="cltAusencias" type="text" inputmode="numeric" data-min="0" data-max="365" aria-describedby="cltAusencias-ajuda" value="0" autocomplete="off"><small class="calc-help" id="cltAusencias-ajuda">Afetam o tempo. Use o cenário de ano completo remunerado.</small></div>
+            <div class="calc-field"><label for="extras">Horas extras apuradas no mês</label><input id="extras" type="text" inputmode="decimal" data-min="0" data-max="744" aria-describedby="extras-ajuda" value="0" autocomplete="off"><small class="calc-help" id="extras-ajuda">Use o espelho de ponto ou a folha. A duração do turno, por si só, não determina horas extras.</small></div>
+            <div class="calc-field"><label for="compensadas">Horas extras compensadas no mês</label><input id="compensadas" type="text" inputmode="decimal" data-min="0" data-max="744" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="adicionalExtra">Adicional de hora extra (%)</label><input id="adicionalExtra" type="text" inputmode="decimal" data-min="50" data-max="1000" aria-describedby="adicionalExtra-ajuda" value="50" autocomplete="off"><small class="calc-help" id="adicionalExtra-ajuda">Use o percentual da sua categoria.</small></div>
+            <div class="calc-field"><label for="divisor">Divisor da folha (opcional)</label><input id="divisor" type="text" inputmode="decimal" data-min="1" data-max="744" data-opcional aria-describedby="divisor-ajuda" value="" autocomplete="off"><small class="calc-help" id="divisor-ajuda">Vazio usa 5 × jornada semanal como referência. Confira o divisor no contrato ou holerite.</small></div>
+            <div class="calc-field"><label for="diasRepouso">Repousos e feriados para DSR no mês</label><input id="diasRepouso" type="text" inputmode="numeric" data-min="0" data-max="31" value="4" autocomplete="off"></div>
+            <div class="calc-field"><label for="diasUteis">Dias úteis para DSR no mês</label><input id="diasUteis" type="text" inputmode="numeric" data-min="1" data-max="31" value="26" autocomplete="off"></div>
+            <div class="calc-field"><label for="dsr">DSR variável informado no holerite (R$)</label><input id="dsr" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="dsr-ajuda" value="0" autocomplete="off"><small class="calc-help" id="dsr-ajuda">Usado quando a estimativa de DSR está desmarcada.</small></div>
+            <div class="calc-field"><label for="adicionais">Outros adicionais tributáveis no mês (R$)</label><input id="adicionais" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="adicionais-ajuda" value="0" autocomplete="off"><small class="calc-help" id="adicionais-ajuda">Por exemplo, noturno ou periculosidade. Use o valor apurado na folha, sem repetir as horas extras.</small></div>
+            <div class="calc-field"><label for="dependentes">Dependentes para IRRF</label><input id="dependentes" type="text" inputmode="numeric" data-min="0" data-max="99" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="deducoes">Outras deduções legais de IRRF do mês (R$)</label><input id="deducoes" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="base13">Base bruta do 13º (opcional, R$)</label><input id="base13" type="text" inputmode="decimal" data-min="0" data-max="100000000" data-opcional aria-describedby="base13-ajuda" value="" autocomplete="off"><small class="calc-help" id="base13-ajuda">Vazio usa a remuneração mensal estimada.</small></div>
+            <div class="calc-field"><label for="baseFerias">Base bruta de férias antes do terço (opcional, R$)</label><input id="baseFerias" type="text" inputmode="decimal" data-min="0" data-max="100000000" data-opcional aria-describedby="baseFerias-ajuda" value="" autocomplete="off"><small class="calc-help" id="baseFerias-ajuda">Vazio usa a remuneração mensal estimada.</small></div>
+            <div class="calc-field"><label for="deducao13">Outras deduções de IRRF do 13º (R$)</label><input id="deducao13" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="deducaoFerias">Outras deduções de IRRF das férias (R$)</label><input id="deducaoFerias" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="descontos">Outros descontos no mês normal (R$)</label><input id="descontos" type="text" inputmode="decimal" data-min="0" data-max="100000000" aria-describedby="descontos-ajuda" value="0" autocomplete="off"><small class="calc-help" id="descontos-ajuda">Inclua coparticipações dos benefícios quando houver.</small></div>
+            <div class="calc-field"><label for="descontosFerias">Outros descontos no mês de férias (R$)</label><input id="descontosFerias" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="vr">Vale-refeição mensal (R$)</label><input id="vr" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="va">Vale-alimentação mensal (R$)</label><input id="va" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="vt">Vale-transporte mensal (R$)</label><input id="vt" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="outros">Outros benefícios mensais (R$)</label><input id="outros" type="text" inputmode="decimal" data-min="0" data-max="100000000" value="0" autocomplete="off"></div>
+            <div class="calc-field"><label for="mesesBeneficios">Meses com benefícios no ano</label><input id="mesesBeneficios" type="text" inputmode="decimal" data-min="0" data-max="12" aria-describedby="mesesBeneficios-ajuda" value="11" autocomplete="off"><small class="calc-help" id="mesesBeneficios-ajuda">Informe o equivalente anual quando os valores variam.</small></div>
+          </div>
+          </details>
+        </section>
+      </div>
+      <section class="calc-card" id="simulacao" aria-labelledby="titulo-resultado">
+        <h2 id="titulo-resultado">Resultados da comparação</h2>
+        <button id="comparar" class="calc-button" type="button">Comparar cenários</button>
+        <p id="erro-comparador" class="calc-error" role="alert" hidden></p>
+        <div id="resultados" tabindex="-1"></div>
+        <p class="calc-help"><a href="../noticias/clt-ou-aplicativo.html">Entenda os direitos e riscos de cada caminho</a></p>
+        <details class="calc-costs"><summary>Premissas e fontes oficiais</summary>
+          <p>A estimativa de folha é para um empregado mensalista, com um vínculo, 30 dias de férias gozadas e ano completo. Os descontos simulam retenção na fonte. A declaração anual do IR pode gerar restituição ou imposto a pagar.</p>
+          <p>Para comparar tempo, usamos as horas dedicadas de cada cenário no ano, com pausas livres descontadas. A projeção supõe ganhos por hora constantes. FGTS fica em conta vinculada, fora das metas de dinheiro disponível.</p>
+          <p>Os resultados são calculados no navegador e os dados digitados não são salvos.</p>
+          <ul>
+            <li><a href="https://www.gov.br/inss/pt-br/direitos-e-deveres/inscricao-e-contribuicao/tabela-de-contribuicao-mensal">INSS — tabela de 2026</a></li>
+            <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026">Receita Federal — IRRF 2026</a></li>
+            <li><a href="https://legis.senado.leg.br/norma/44184944">EC 141/2026</a> e <a href="https://noticias.stf.jus.br/postsnoticias/stf-mantem-regra-de-transicao-para-implementacao-da-jornada-5x2/">cautelares nas ADIs 8.041 e 8.042</a></li>
+            <li><a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm">CLT</a> e <a href="https://www.planalto.gov.br/ccivil_03/leis/l8036consol.htm">Lei do FGTS</a></li>
+          </ul>
+        </details>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>LUCRO NA ROTA</strong><small>Mais lucro, menos B.O.</small></span>
+        </a>
+        <nav class="footer-nav" aria-label="Links do rodapé">
+          <ul>
+            <li><a href="../sobre/">Sobre o Lucro na Rota</a></li>
+            <li><a href="../criterios-editoriais/">Critérios editoriais</a></li>
+            <li><a href="../privacidade/">Política de privacidade</a></li>
+            <li><a href="../calculadora/">Calculadora gratuita</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-legal">© 2026 Lucro na Rota.</p>
+    </div>
+  </footer>
+</body>
+</html>

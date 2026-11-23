@@ -1,6 +1,6 @@
 # Lucro na Rota
 
-Portal para entregadores de aplicativo, com uma calculadora gratuita de resultado diário e uma área de notícias e dicas. O projeto parte de Guarulhos (SP) e atende quem roda de moto, carro ou bicicleta pelo Brasil.
+Portal especializado em delivery de refeições, com uma calculadora gratuita de resultado diário também para quem entrega encomendas ou transporta passageiros, além de uma área de notícias e dicas. O projeto parte de Guarulhos (SP) e atende quem roda de moto, carro ou bicicleta pelo Brasil.
 
 Esta versão está na branch de revisão `desenvolvimento/portal-lucro-na-rota`. O endereço público é servido por HTTPS no GitHub Pages a partir da branch `main`. A publicação do portal depende da aprovação do proprietário. [Endereço público atual](https://buniorcomj.github.io/calculadora-entregadores/)
 
@@ -18,7 +18,7 @@ Abra [http://localhost:8000/](http://localhost:8000/) no navegador. Para encerra
 
 1. Abra **Início**, veja o destaque e siga o botão para a **Calculadora**. Depois use o menu para voltar e abra **Notícias e Dicas**, leia a reportagem e confira os links do rodapé.
 2. Na calculadora, selecione **Veículo próprio** e **Bicicleta comum**. Em uma sessão com configurações vazias, informe R$ 40 de faturamento, 30 km e 2 horas. O resultado estimado deve ser R$ 40,00 e R$ 20,00 por hora. Use **Copiar resumo do dia** e cole em um editor de texto.
-3. Passe para **Veículo alugado** e escolha a bicicleta. Coloque R$ 15,50 de aluguel por dia e R$ 2,50 de outras despesas. Com os mesmos dados da jornada, o resultado deve ser R$ 22,00. Recarregue a página. Confira o aluguel salvo, preencha os dados da jornada novamente e experimente **Apagar configurações salvas**.
+3. Passe para **Veículo alugado** e escolha a bicicleta. Coloque R$ 15,50 de aluguel por dia e R$ 2,50 de outros gastos do dia. Com os mesmos dados da jornada, o resultado deve ser R$ 22,00. Recarregue a página. Confira o aluguel salvo, preencha os dados da jornada novamente e experimente **Apagar configurações salvas**.
 4. Reduza a largura da janela ou ative a visualização de celular do navegador. Confira se consegue abrir o menu, ler a reportagem e preencher a calculadora sem rolar para os lados.
 5. Se encontrar algo para ajustar, informe a página, o aparelho ou navegador, as ações realizadas e o que apareceu. Uma captura de tela com valores fictícios ajuda a localizar o problema.
 
