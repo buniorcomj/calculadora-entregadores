@@ -1,5 +1,12 @@
 # Estado do projeto
 
+## Fechamento do dia — 23/11/2026
+
+- **Versão de revisão.** Os 28 arquivos do site na prévia HTTPS privada coincidem com o commit `a308ffd` na branch `desenvolvimento/portal-lucro-na-rota`. A prévia exige login e o site público segue na versão anterior.
+- **Concluído.** Calculadora de entregas e corridas com outros gastos do dia e referências de depreciação. Comparador Aplicativo x CLT com reservas separadas da renda comparável e equivalência econômica de jornada. Matérias sobre ganhos, gastos e reservas e sobre CLT versus aplicativo, além da apresentação do projeto. Correções de HTML, documentação de fórmulas e testes preservados.
+- **Verificação.** Na versão de revisão, passaram 78 testes automatizados e a checagem de estrutura e navegação das 10 páginas, com 214 referências verificadas.
+- **Para retomar em 24/11.** Revisar os cálculos de forma independente, testar as duas calculadoras no navegador e conferir privacidade, textos, links e ordem das matérias. Confirmar as datas editoriais e obter aprovação antes de qualquer publicação oficial.
+
 ## Revisão para lançamento — 23/11/2026
 
 - Reportagem CLT com estrutura HTML corrigida e teste de fechamento de tags na navegação.
