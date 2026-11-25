@@ -40,3 +40,8 @@ Registrar novas decisões nesta ata, atualizar o Projeto Mestre quando mudarem r
 - A identidade usa verde, fundo claro e imagens ilustrativas próprias. Guarulhos é a base inicial do projeto, que trata de entregas em âmbito nacional.
 - O portal usa arquivos estáticos com caminhos relativos compatíveis com o GitHub Pages. A revisão acontece em `desenvolvimento/portal-lucro-na-rota`, com publicação em `main` condicionada à aprovação do proprietário. A data de 19/11/2026 para a reportagem é proposta.
 - A política descreve o uso do armazenamento do navegador e os registros técnicos documentados pelo provedor. Planilha, comunidade, publicidade e funcionalidades premium permanecem em planejamento.
+
+
+## Diretriz editorial e comercial
+
+Todas as matérias devem terminar com a assinatura **Lucro na Rota. Aqui, a gente corre junto!**. O acesso a conteúdos, ferramentas e comunidade é gratuito para o entregador, sem planos pagos. A monetização pode ocorrer por publicidade, patrocínios, parcerias e links de afiliados identificados. Não haverá marketplace, venda direta nem intermediação de pagamentos entre usuários.
