@@ -112,7 +112,7 @@ test('portal desativado e calculadoras isoladas dos comentários', async () => {
   const ler = caminho => readFileSync(new URL('../' + caminho, import.meta.url), 'utf8');
   const { origemComentarios } = await import('../assets/js/comentarios-config.mjs');
   assert.equal(origemComentarios, '');
-  for (const slug of ['apresentacao', 'clt-ou-aplicativo', 'como-registrar-ganhos-e-gastos']) {
+  for (const slug of ['apresentacao', 'tutorial-aplicativo-x-clt', 'tutorial-calculadora-financeira']) {
     const pagina = ler('noticias/' + slug + '.html');
     assert.match(pagina, new RegExp('data-comentarios="' + slug + '"[^>]+hidden>'));
     assert.doesNotMatch(pagina, /iframe|challenges\.cloudflare\.com/);

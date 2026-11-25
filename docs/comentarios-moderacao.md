@@ -21,7 +21,7 @@ GitHub Pages é estático, portanto os comentários exigem um serviço adicional
 **Alternativas:** serviços prontos com comentários por URL, moderação prévia e participação de visitantes. Antes de escolher, verificar preço, limites, plano grátis, exigência de conta, publicidade, rastreamento, LGPD e possibilidade de portabilidade. A opção gratuita do Common Ninja possui restrições para comentários separados por URL, exigindo cautela. O Disqus gratuito inclui anúncios e não deve ser ativado sem análise de privacidade.
 
 ## Escopo de conteúdo e lançamento
-- Colocar comentários em `noticias/como-registrar-ganhos-e-gastos.html`, `noticias/clt-ou-aplicativo.html` e `noticias/apresentacao.html`. Novas matérias precisam gerar seção própria automaticamente por identificador estável.
+- Colocar comentários em `noticias/apresentacao.html`, `noticias/tutorial-calculadora-financeira.html` e `noticias/tutorial-aplicativo-x-clt.html`. Novas matérias precisam gerar seção própria automaticamente por identificador estável.
 - Manter as duas calculadoras existentes sem comentários e sem mudanças nas fórmulas.
 - Confirmar datas reais de publicação; não inventar visitas, comentários ou depoimentos.
 - Revisar as matérias, links, títulos, SEO, privacidade e funcionamento de celular.

@@ -1,5 +1,11 @@
 # Estado do projeto
 
+## Sequência editorial de lançamento — 25/11/2026
+
+- A capa e o arquivo de notícias seguem a ordem aprovada: apresentação do portal, tutorial da calculadora financeira e tutorial Aplicativo x CLT.
+- Os textos de reservas e direitos trabalhistas ficam em `docs/arquivo-editorial/` como fontes para futuras matérias, fora das rotas e do sitemap de lançamento.
+- Os tutoriais preservam os comentários desativados por padrão. A homologação da Cloudflare, a revisão editorial e as datas de publicação continuam pendentes.
+
 ## Comentários moderados — 25/11/2026
 
 - Implementação na branch de desenvolvimento com comentários por matéria, fila de aprovação e painel de moderação protegido pelo Cloudflare Access.
