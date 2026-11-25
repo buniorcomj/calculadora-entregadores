@@ -73,3 +73,7 @@ Troque o conteúdo de `<article>` no arquivo-base e conserve o restante da pági
 - Guarulhos e outras regiões
 
 A categoria entra no card e na matéria. A lista começa com os conteúdos publicados e pode ganhar filtros de categoria conforme o arquivo crescer.
+
+## Comentários
+
+Copie o bloco de comentários do arquivo-base e substitua o valor de `data-comentarios` pelo identificador estável da matéria. Use até 80 caracteres, com letras minúsculas, números e hífens. Não reutilize identificadores de outras matérias. Preserve esse valor se mudar o título ou endereço para manter a discussão associada.

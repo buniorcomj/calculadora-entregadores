@@ -1,0 +1,21 @@
+name = "lucro-na-rota-comentarios"
+main = "worker.mjs"
+compatibility_date = "2026-11-25"
+workers_dev = false
+preview_urls = false
+
+[vars]
+PORTAL_ORIGEM = "https://buniorcomj.github.io"
+PORTAL_PRIVACIDADE = "https://buniorcomj.github.io/calculadora-entregadores/privacidade/"
+API_ORIGEM = "https://comentarios.exemplo.com"
+TURNSTILE_SITE_KEY = "PREENCHER"
+ACCESS_ISSUER = "https://equipe.cloudflareaccess.com"
+ACCESS_AUD = "PREENCHER"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lucro-na-rota-comentarios"
+database_id = "PREENCHER"
+
+[triggers]
+crons = ["17 4 * * *"]

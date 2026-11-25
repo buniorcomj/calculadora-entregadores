@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="../assets/css/editorial.css">
   <script src="../assets/js/site.js" defer></script>
   <link rel="icon" href="../assets/imagens/icone.png" type="image/png">
+  <script type="module" src="../assets/js/comentarios.mjs"></script>
 </head>
 <body data-page="noticias">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -107,6 +108,11 @@
         <a class="editorial-button" href="../calculadora/">Abrir calculadora grátis</a>
       </footer>
     </article>
+    <section class="editorial-shell comentarios" data-comentarios="apresentacao" aria-labelledby="titulo-comentarios" hidden>
+      <h2 id="titulo-comentarios">Comentários</h2>
+      <p>Ao abrir, você se conecta ao serviço de comentários e à proteção antispam da Cloudflare. <a href="../privacidade/#comentarios">Saiba quais dados são tratados</a>.</p>
+      <button class="editorial-button" type="button" hidden>Ver comentários</button>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="wrap">

@@ -363,3 +363,15 @@
     flex-direction: column;
   }
 }
+
+.comentarios {
+  margin-block: 2rem;
+}
+
+.comentarios-quadro {
+  display: block;
+  width: 100%;
+  min-height: 36rem;
+  border: 1px solid #cad7ce;
+  border-radius: .5rem;
+}

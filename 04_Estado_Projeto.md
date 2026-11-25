@@ -1,5 +1,11 @@
 # Estado do projeto
 
+## Comentários moderados — 25/11/2026
+
+- Implementação na branch de desenvolvimento com comentários por matéria, fila de aprovação e painel de moderação protegido pelo Cloudflare Access.
+- Fluxo validado em testes com banco isolado. A prévia HTTPS do portal conserva o recurso desativado e as duas calculadoras continuam isoladas.
+- Pendente para concluir a tarefa #1: autorizar a configuração de homologação na Cloudflare e testar o fluxo integrado por HTTPS. As etapas estão na [especificação de comentários](docs/comentarios-moderacao.md).
+
 ## Fechamento do dia — 23/11/2026
 
 - **Versão de revisão.** Os 28 arquivos do site na prévia HTTPS privada coincidem com o commit `a308ffd` na branch `desenvolvimento/portal-lucro-na-rota`. A prévia exige login e o site público segue na versão anterior.
