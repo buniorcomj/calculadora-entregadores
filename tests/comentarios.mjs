@@ -63,7 +63,9 @@ test('envia, aguarda aprovação, responde, aprova, rejeita e exclui por matéri
   assert.match(pendente, /Aguardando moderação/);
   assert.doesNotMatch(pendente, /Mensagem de teste/);
   assert.match(await (await chamar('/moderacao', null, jwt)).text(), /Mensagem de teste/);
-  assert.equal((await moderar(1, 'aprovar')).status, 303);
+  const aprovacao = await moderar(1, 'aprovar');
+  assert.equal(aprovacao.status, 303);
+  assert.match(await (await chamar(aprovacao.headers.get('Location'), null, jwt)).text(), /Comentário aprovado/);
   assert.match(await (await chamar(caminho)).text(), /Mensagem de teste/);
   assert.doesNotMatch(await (await chamar('/comentarios/materia-dois')).text(), /Mensagem de teste/);
   assert.equal((await enviar({ pai: 1, texto: 'Resposta de outra matéria' }, '/comentarios/materia-dois')).status, 400);
@@ -73,8 +75,12 @@ test('envia, aguarda aprovação, responde, aprova, rejeita e exclui por matéri
   assert.match(await (await chamar(caminho)).text(), /Resposta em revisão/);
   await moderar(1, 'rejeitar');
   assert.doesNotMatch(await (await chamar(caminho)).text(), /Mensagem de teste|Resposta em revisão/);
+  assert.equal((await moderar(2, 'aprovar')).status, 409);
   await moderar(1, 'excluir');
+  assert.equal((await moderar(1, 'excluir')).status, 409);
   assert.equal(DB.sql.prepare('SELECT COUNT(*) AS n FROM comentarios').get().n, 0);
+  await enviar({ texto: 'Novo comentário' });
+  assert.equal(DB.sql.prepare('SELECT id FROM comentarios').get().id, 3);
 });
 
 test('bloqueia painel anônimo, sessão inválida e POST de outra origem', async () => {

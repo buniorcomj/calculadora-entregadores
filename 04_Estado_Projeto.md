@@ -1,5 +1,11 @@
 # Estado do projeto
 
+## Revisão técnica — 25/11/2026
+
+- Moderação confirma ações aplicadas, sinaliza ações que ficaram inválidas e preserva identificadores de comentários excluídos contra reuso. O teste integrado com Cloudflare continua pendente de autorização e configuração de Workers, D1, Turnstile, Access e hostname HTTPS.
+- As duas calculadoras passaram em cenários de uso no Chromium em 320, 390, 768 e 1.440 px. As fórmulas e a proteção de dados permanecem iguais. Passaram 82 testes automatizados e a navegação das 10 páginas.
+- O modelo HTML reutilizável inclui campos para a redação aprovada, imagem, fontes e comentários. O conteúdo das reportagens existentes foi preservado.
+
 ## Sequência editorial de lançamento — 25/11/2026
 
 - A capa e o arquivo de notícias seguem a ordem aprovada: apresentação do portal, tutorial da calculadora financeira e tutorial Aplicativo x CLT.

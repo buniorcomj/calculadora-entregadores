@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#142d24">
+  <title>TITULO | Lucro na Rota</title>
+  <meta name="description" content="DESCRICAO">
+  <link rel="canonical" href="https://buniorcomj.github.io/calculadora-entregadores/noticias/SLUG.html">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/editorial.css">
+  <script src="../assets/js/site.js" defer></script>
+  <link rel="icon" href="../assets/imagens/icone.png" type="image/png">
+  <script type="module" src="../assets/js/comentarios.mjs"></script>
+</head>
+<body data-page="noticias">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong>LUCRO NA ROTA</strong><small>Mais lucro, menos B.O.</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="menu-principal" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span>
+      </button>
+      <nav class="site-nav" id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="../">Início</a></li>
+          <li><a href="../calculadora/">Calculadora</a></li>
+          <li><a href="../noticias/" class="nav-section">Notícias e Dicas</a></li>
+          <li><a href="../sobre/">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo" tabindex="-1" class="editorial-shell story">
+    <nav class="editorial-breadcrumb" aria-label="Localização">
+      <ol>
+        <li><a href="../">Início</a></li>
+        <li><a href="./">Notícias e dicas</a></li>
+        <li aria-current="page">TITULO</li>
+      </ol>
+    </nav>
+    <article>
+      <header class="story-header">
+        <p class="editorial-topic">CATEGORIA</p>
+        <h1>TITULO</h1>
+        <p class="story-deck">SUBTITULO</p>
+        <p class="story-byline">AUTORIA</p>
+      </header>
+      <figure class="story-figure">
+        <img src="../assets/imagens/IMAGEM.webp" alt="DESCRICAO_DA_IMAGEM" width="1200" height="800" decoding="async">
+        <figcaption>LEGENDA_E_CREDITO</figcaption>
+      </figure>
+      <div class="editorial-prose">
+        <p>TEXTO_APROVADO</p>
+        <section aria-labelledby="fontes">
+          <h2 id="fontes">Fontes</h2>
+          <ul><li><a href="URL_DA_FONTE">NOME_DA_FONTE</a></li></ul>
+        </section>
+      </div>
+    </article>
+    <section class="editorial-shell comentarios" data-comentarios="SLUG" aria-labelledby="titulo-comentarios" hidden>
+      <h2 id="titulo-comentarios">Comentários</h2>
+      <p>Ao abrir, você se conecta ao serviço de comentários e à proteção antispam da Cloudflare. <a href="../privacidade/#comentarios">Saiba quais dados são tratados</a>.</p>
+      <button class="editorial-button" type="button" hidden>Ver comentários</button>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span><strong>LUCRO NA ROTA</strong><small>Mais lucro, menos B.O.</small></span>
+        </a>
+        <nav class="footer-nav" aria-label="Links do rodapé">
+          <ul>
+            <li><a href="../sobre/">Sobre o Lucro na Rota</a></li>
+            <li><a href="../criterios-editoriais/">Critérios editoriais</a></li>
+            <li><a href="../privacidade/">Política de privacidade</a></li>
+            <li><a href="../calculadora/">Calculadora gratuita</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-legal">© 2026 Lucro na Rota.</p>
+    </div>
+  </footer>
+</body>
+</html>

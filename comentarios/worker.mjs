@@ -149,19 +149,29 @@ async function painel(request, env, url, buscar, agora) {
     if (!idValido(id) || !['aprovar', 'rejeitar', 'excluir'].includes(acao)) {
       return pagina('Ação inválida', '<p>Volte ao painel e confira a seleção.</p>', 400, env, true);
     }
+    let resultado;
     if (acao === 'excluir') {
-      await env.DB.prepare('DELETE FROM comentarios WHERE id=?').bind(id).run();
+      resultado = await env.DB.prepare('DELETE FROM comentarios WHERE id=?').bind(id).run();
     } else {
-      await env.DB.prepare(`UPDATE comentarios SET estado=?,revisado=? WHERE id=? AND
+      resultado = await env.DB.prepare(`UPDATE comentarios SET estado=?,revisado=? WHERE id=? AND
         (?='rejeitado' OR pai IS NULL OR EXISTS(SELECT 1 FROM comentarios p WHERE p.id=comentarios.pai AND p.estado='aprovado'))`)
         .bind(acao === 'aprovar' ? 'aprovado' : 'rejeitado', agora, id, acao === 'aprovar' ? 'aprovado' : 'rejeitado').run();
     }
-    return redirecionar('/moderacao');
+    if (!resultado.meta.changes) {
+      return pagina('Ação não aplicada', '<p>O comentário já foi excluído ou a resposta ainda não pode ser aprovada.</p><a href="/moderacao">Voltar ao painel</a>', 409, env, true);
+    }
+    return redirecionar('/moderacao?acao=' + acao);
   }
   const filtro = ['pendente', 'aprovado', 'rejeitado'].includes(url.searchParams.get('estado')) ? url.searchParams.get('estado') : 'pendente';
   const antes = idValido(url.searchParams.get('antes')) ? Number(url.searchParams.get('antes')) : Number.MAX_SAFE_INTEGER;
   const { results } = await env.DB.prepare('SELECT id,artigo,pai,apelido,texto,criado FROM comentarios WHERE estado=? AND id<? ORDER BY id DESC LIMIT 31').bind(filtro, antes).all();
-  return pagina('Moderação de comentários', `<nav aria-label="Filtrar comentários"><a href="/moderacao">Pendentes</a> ·
+  const confirmacao = {
+    aprovar: 'Comentário aprovado.',
+    rejeitar: 'Comentário rejeitado.',
+    excluir: 'Comentário excluído.',
+  };
+  const mensagem = Object.hasOwn(confirmacao, url.searchParams.get('acao')) ? confirmacao[url.searchParams.get('acao')] : '';
+  return pagina('Moderação de comentários', `${mensagem ? `<p role="status">${mensagem}</p>` : ''}<nav aria-label="Filtrar comentários"><a href="/moderacao">Pendentes</a> ·
     <a href="/moderacao?estado=aprovado">Aprovados</a> · <a href="/moderacao?estado=rejeitado">Rejeitados</a></nav>
     <h2>Estado: ${filtro}</h2>
     ${results.slice(0,30).map(c => `<article><h3>${escapar(c.apelido)}</h3><p>${escapar(c.artigo)} · ${data(c.criado)}${c.pai ? ' · resposta a #' + c.pai : ''}</p><p>${escapar(c.texto)}</p>

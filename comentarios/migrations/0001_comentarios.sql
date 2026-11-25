@@ -1,6 +1,6 @@
 PRAGMA foreign_keys = ON;
 CREATE TABLE comentarios (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   artigo TEXT NOT NULL,
   pai INTEGER REFERENCES comentarios(id) ON DELETE CASCADE,
   apelido TEXT NOT NULL,
