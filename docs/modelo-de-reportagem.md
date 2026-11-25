@@ -29,3 +29,8 @@ A categoria entra no card e na matéria. A lista começa com os conteúdos publi
 ## Comentários
 
 Copie o bloco de comentários do arquivo-base e substitua o valor de `data-comentarios` pelo identificador estável da matéria. Use até 80 caracteres, com letras minúsculas, números e hífens. Não reutilize identificadores de outras matérias. Preserve esse valor se mudar o título ou endereço para manter a discussão associada.
+
+
+## Diretriz editorial e comercial
+
+Todas as matérias devem terminar com a assinatura **Lucro na Rota. Aqui, a gente corre junto!**. O acesso a conteúdos, ferramentas e comunidade é gratuito para o entregador, sem planos pagos. A monetização pode ocorrer por publicidade, patrocínios, parcerias e links de afiliados identificados. Não haverá marketplace, venda direta nem intermediação de pagamentos entre usuários.
