@@ -45,3 +45,10 @@ Registrar novas decisões nesta ata, atualizar o Projeto Mestre quando mudarem r
 ## Diretriz editorial e comercial
 
 Todas as matérias devem terminar com a assinatura **Lucro na Rota. Aqui, a gente corre junto!**. O acesso a conteúdos, ferramentas e comunidade é gratuito para o entregador, sem planos pagos. A monetização pode ocorrer por publicidade, patrocínios, parcerias e links de afiliados identificados. Não haverá marketplace, venda direta nem intermediação de pagamentos entre usuários.
+
+## Lançamento gradual e limites editoriais — 25/11/2026
+
+- Lançamento inicial: calculadora do entregador, planejador de metas e comparador de corridas, após implementação e testes. Adiar Aplicativo x CLT e sua matéria, preservando o código para lançamento futuro.
+- Ferramentas futuras gratuitas: juros compostos, estimativas de gasto calórico e percentual de gordura corporal, histórico e gráficos. Ordem e datas ainda não definidas.
+- Conteúdo educativo, sem recomendações de investimento, promessas de retorno, diagnósticos, prescrições ou substituição de avaliação mecânica. Documentar fontes, fórmulas, hipóteses e limitações; exigir revisão especializada para conteúdo de maior risco.
+- Codex deve excluir as páginas adiadas do artefato público de lançamento, inclusive acesso direto, sitemap e links internos, preservando os arquivos de desenvolvimento. Não publicar antes da aprovação.
