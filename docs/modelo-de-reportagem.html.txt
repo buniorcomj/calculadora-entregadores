@@ -61,6 +61,7 @@
           <h2 id="fontes">Fontes</h2>
           <ul><li><a href="URL_DA_FONTE">NOME_DA_FONTE</a></li></ul>
         </section>
+        <p><strong>Lucro na Rota. Aqui, a gente corre junto!</strong></p>
       </div>
     </article>
     <section class="editorial-shell comentarios" data-comentarios="SLUG" aria-labelledby="titulo-comentarios" hidden>
